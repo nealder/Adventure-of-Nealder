@@ -14,7 +14,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.Spring;
 
 public class Draw {
 	JFrame frame;
@@ -65,27 +64,76 @@ public class Draw {
 		bufferStrategy.show();
 	}
 
-	void render_init_combat() {
+	void render_init_playerstat() {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
-		render_combat(g);
+		render_playerstat(g);
 		g.dispose();
 		bufferStrategy.show();
 	}
 
-	private void render_combat(Graphics2D g) {
+	private void render_playerstat(Graphics2D g) {
 		try {
 			g.drawImage(ImageIO.read(new File("src/main/resources/Images/background.png")), 0, 0, WIDTH, HEIGHT, null);
-			g.setColor(Color.GREEN);
-			g.drawRect(40, 40, 200, 20);
-			g.fillRect(40, 40, 200 * Instances.player.getLife() / Instances.player.getCurrentLife(), 20);
-			JPanel panel = new JPanel();
-			JLabel jlabel = new JLabel();
-			panel.add(jlabel);
-			jlabel.setText(new Float(Instances.player.getX()).toString());
 
-			jlabel.setFont(new Font("Verdana", 1, 20));
-			jlabel.setBounds(260, 40, 50, 30);
+			Font font = new Font("Serif", Font.PLAIN, 96);
+			g.setFont(font);
+			g.setColor(Color.GRAY);
+			g.drawString("Nealder", 150, 130);
+
+			g.drawImage(ImageIO.read(new File(Instances.player.moveDownSprite)), 280, 0, 350, 70, 0, 0, 70, 70, null);
+
+			font = new Font("Serif", Font.PLAIN, 22);
+			g.setFont(font);
+			g.drawString("Life", 50, 190);
+			g.drawString(":", 150, 190);
+			g.drawString(new Integer(Instances.player.getLife()).toString() + " / " + Instances.player.getCurrentLife(),
+					165, 192);
+			g.drawString("Strength", 50, 220);
+			g.drawString(":", 150, 220);
+			g.drawString(new Integer(Instances.player.getStrenght()).toString(), 165, 222);
+			g.drawString("Stamina", 50, 250);
+			g.drawString(":", 150, 250);
+			g.drawString(new Integer(Instances.player.getStamina()).toString(), 165, 252);
+			g.drawString("Magic", 50, 280);
+			g.drawString(":", 150, 280);
+			g.drawString(new Integer(Instances.player.getMagic()).toString(), 165, 282);
+
+			g.drawString("Armor", 50, 340);
+			g.drawString(":", 190, 340);
+			g.drawString(new Integer(Instances.player.getMagic()).toString(), 205, 342);
+			g.drawString("Critical chance", 50, 370);
+			g.drawString(":", 190, 370);
+			g.drawString(new Float(Instances.player.getCritical_chance() * 100).toString(), 205, 372);
+			g.drawString("%", 260, 372);
+			g.drawString("Critical damage", 50, 400);
+			g.drawString(":", 190, 400);
+			g.drawString(new Float(Instances.player.getCritical_dmg() * 100).toString(), 205, 402);
+			g.drawString("%", 260, 402);
+
+			g.drawImage(ImageIO.read(new File("src/main/resources/Images/inventory.png")), 50, 450, 387, 159, null);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	void render_init_interactionNPC(NPC npc) {
+		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
+		g.clearRect(0, 0, WIDTH, HEIGHT);
+		render_interactionNPC(g, npc);
+		g.dispose();
+		bufferStrategy.show();
+	}
+
+	private void render_interactionNPC(Graphics2D g, NPC npc) {
+		try {
+			g.drawImage(ImageIO.read(new File(Instances.currentMap.mapImageGround)), 0, 0, null);
+			g.drawImage(ImageIO.read(new File(Instances.player.moveDownSprite)), (int) Instances.player.getX(),
+					(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+					(int) Instances.player.getY() + 70, 0, 0, 70, 70, null);
+			g.drawImage(ImageIO.read(new File("src/main/resources/Images/background.png")), 100, 100, 440, 440, null);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -101,59 +149,63 @@ public class Draw {
 		}
 		if (Instances.player.right == true) {
 			try {
-				g.drawImage(ImageIO.read(new File("src/main/resources/Images/MoveRightSprite.png")),
-						(int) Instances.player.getX(), (int) Instances.player.getY(),
-						(int) Instances.player.getX() + 70, (int) Instances.player.getY() + 70,
-						0 + dx * Instances.player.sprite_i, 0, dx + dx * Instances.player.sprite_i, 70, null);
+				g.drawImage(ImageIO.read(new File(Instances.player.moveRightSprite)), (int) Instances.player.getX(),
+						(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
+						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else if (Instances.player.left == true) {
 			try {
-				g.drawImage(ImageIO.read(new File("src/main/resources/Images/MoveLeftSprite.png")),
-						(int) Instances.player.getX(), (int) Instances.player.getY(),
-						(int) Instances.player.getX() + 70, (int) Instances.player.getY() + 70,
-						0 + dx * Instances.player.sprite_i, 0, dx + dx * Instances.player.sprite_i, 70, null);
+				g.drawImage(ImageIO.read(new File(Instances.player.moveLeftSprite)), (int) Instances.player.getX(),
+						(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
+						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else if (Instances.player.up == true) {
 			try {
-				g.drawImage(ImageIO.read(new File("src/main/resources/Images/MoveUpSprite.png")),
-						(int) Instances.player.getX(), (int) Instances.player.getY(),
-						(int) Instances.player.getX() + 70, (int) Instances.player.getY() + 70,
-						0 + dx * Instances.player.sprite_i, 0, dx + dx * Instances.player.sprite_i, 70, null);
+				g.drawImage(ImageIO.read(new File(Instances.player.moveUpSprite)), (int) Instances.player.getX(),
+						(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
+						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else if (Instances.player.down == true) {
 			try {
-				g.drawImage(ImageIO.read(new File("src/main/resources/Images/MoveDownSprite.png")),
-						(int) Instances.player.getX(), (int) Instances.player.getY(),
-						(int) Instances.player.getX() + 70, (int) Instances.player.getY() + 70,
-						0 + dx * Instances.player.sprite_i, 0, dx + dx * Instances.player.sprite_i, 70, null);
+				g.drawImage(ImageIO.read(new File(Instances.player.moveDownSprite)), (int) Instances.player.getX(),
+						(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
+						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else
 			try {
-				g.drawImage(ImageIO.read(new File("src/main/resources/Images/MoveDownSprite.png")),
-						(int) Instances.player.getX(), (int) Instances.player.getY(),
-						(int) Instances.player.getX() + 70, (int) Instances.player.getY() + 70, 0, 0, 70, 70, null);
+				g.drawImage(ImageIO.read(new File(Instances.player.moveDownSprite)), (int) Instances.player.getX(),
+						(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+						(int) Instances.player.getY() + 70, 0, 0, 70, 70, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 
 		if (Instances.player.getInventoryStatus() == true) {
-			render_init_combat();
+			render_init_playerstat();
+		}
+		if (Instances.food_potion_vendor.getInteractionStatus() == true) {
+			render_init_interactionNPC(Instances.food_potion_vendor);
 		}
 
-		if (currentMapGround.equals(Instances.Falucska2.mapImageGround)) {
+		if (Instances.currentMap.mapImageGround.equals(Instances.Falucska2.mapImageGround)
+				&& !Instances.player.getInventoryStatus()) {
 			try {
-				g.drawImage(ImageIO.read(new File("src/main/resources/Images/food&Potion_vendor_onesprite.png")), 550,
-						70, 625, 135, 0, 0, 75, 65, null);
+				g.drawImage(ImageIO.read(new File(Instances.food_potion_vendor.imageNPC)),
+						Instances.food_potion_vendor.x, Instances.food_potion_vendor.y,
+						Instances.food_potion_vendor.x + 70, Instances.food_potion_vendor.y + 70, 0, 0, 75, 65, null);
 			} catch (IOException e) {
-
 				e.printStackTrace();
 			}
 		}
@@ -161,10 +213,22 @@ public class Draw {
 		g.setColor(Color.red);
 		g.drawRect((int) Instances.player.collisionTest.getX(), (int) Instances.player.collisionTest.getY(),
 				(int) Instances.player.collisionTest.getWidth(), (int) Instances.player.collisionTest.getHeight());
+		if (Instances.currentMap == Instances.Falucska2) {
+			g.setColor(Color.blue);
+			g.drawRect(Instances.food_potion_vendor.x, Instances.food_potion_vendor.y,
+					Instances.food_potion_vendor.width, Instances.food_potion_vendor.height);
+		}
 
+		g.setColor(Color.red);
 		for (Rectangle rec : Instances.currentMap.unpassableRectangle) {
 			g.drawRect((int) rec.x, (int) rec.y, (int) rec.getWidth(), (int) rec.getHeight());
 		}
+
+		/*
+		 * try { g.drawImage(ImageIO.read(new
+		 * File(Instances.currentMap.mapImageObjects)), 0, 0, null); } catch
+		 * (IOException e) { e.printStackTrace(); }
+		 */
 
 	}
 

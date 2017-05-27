@@ -5,7 +5,7 @@ public class Game implements Runnable {
 
 	public void run() {
 		while (true) {
-			
+
 			drawing.render();
 			try {
 				Thread.sleep(20);

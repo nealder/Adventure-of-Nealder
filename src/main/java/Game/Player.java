@@ -5,37 +5,42 @@ import java.util.List;
 
 public class Player {
 
-	private float x = 200;
-	private float y = 254;
+	private float x = 380;
+	private float y = 90;
 	public int sprite_i = 0;
 	public int sprite_k = -1;
 	public boolean left, right, up, down, inventory;
+	public int spriteDelayer;
 	private String Name;
 	public List<Item> inventoryList;
-	public Rectangle collisionTest = new Rectangle((int) x + 10, (int) y + 30, 31, 31);
+	public Rectangle collisionTest = new Rectangle((int) x + 10, (int) y + 30, 30, 30);
+	public String moveRightSprite = "src/main/resources/Images/MoveRightSprite.png";
+	public String moveUpSprite = "src/main/resources/Images/MoveUpSprite.png";
+	public String moveDownSprite = "src/main/resources/Images/MoveDownSprite.png";
+	public String moveLeftSprite = "src/main/resources/Images/MoveLeftSprite.png";
 
 	public int currentLife = 30;
 
-	public int strenght, stamina, maxLife = 40, magic;
-	public float critical_chance, critical_dmg;
+	public int strenght = 1, stamina = 1, maxLife = 40, magic = 1;
+	public float critical_chance = (float) 0.0500, critical_dmg = (float) 2.0000;
 	public int armor;
 
 	public void update() {
 		if (left) {
-			x -= 3;
-			collisionTest.x -= 3;
+			x -= 1;
+			collisionTest.x -= 1;
 		}
 		if (right) {
-			x += 3;
-			collisionTest.x += 3;
+			x += 1;
+			collisionTest.x += 1;
 		}
 		if (up) {
-			y -= 3;
-			collisionTest.y -= 3;
+			y -= 1;
+			collisionTest.y -= 1;
 		}
 		if (down) {
-			y += 3;
-			collisionTest.y += 3;
+			y += 1;
+			collisionTest.y += 1;
 		}
 	}
 

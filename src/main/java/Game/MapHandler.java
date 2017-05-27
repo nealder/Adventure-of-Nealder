@@ -7,14 +7,15 @@ import java.util.List;
 public class MapHandler {
 
 	public String mapImageGround;
-	
-	//nem része a "adventuresofnealder.beta1"-nek
+	public List<NPC> listOfNPCs = new ArrayList<NPC>();
+
+	// nem része a "adventuresofnealder.beta1"-nek
 	public String mapImageObjects;
-	
+
 	public List<Tile> unpassableTiles;
 	public List<Rectangle> unpassableRectangle = new ArrayList<Rectangle>();
-	
-	//nem része a "adventuresofnealder.beta1"-nek
+
+	// nem része a "adventuresofnealder.beta1"-nek
 	public List<Tile> passageWays;
 
 	public MapHandler(String mapImageGround, String mapImageObjects, String name) {
@@ -78,6 +79,8 @@ public class MapHandler {
 				&& Instances.player.collisionTest.getY() <= 34
 				&& Instances.currentMap.mapImageGround.equals(Instances.Falucska1.mapImageGround)) {
 			Instances.currentMap = Instances.Falucska2;
+			Instances.currentMap.listOfNPCs.clear();
+			Instances.currentMap.listOfNPCs.add(Instances.food_potion_vendor);
 			Instances.player.setX(390);
 			Instances.player.setY(534);
 		}

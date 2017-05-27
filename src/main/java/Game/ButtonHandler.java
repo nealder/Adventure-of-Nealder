@@ -1,6 +1,5 @@
 package Game;
 
-import java.awt.Rectangle;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -19,6 +18,9 @@ public class ButtonHandler extends KeyAdapter {
 			Instances.player.setDown(false);
 			Instances.player.setLeft(false);
 			Instances.player.setRight(false);
+			if (Instances.player.getInventoryStatus()) {
+				break;
+			}
 			Instances.currentMap.collisionTestUp();
 			break;
 		case KeyEvent.VK_DOWN:
@@ -26,6 +28,9 @@ public class ButtonHandler extends KeyAdapter {
 			Instances.player.setDown(false);
 			Instances.player.setLeft(false);
 			Instances.player.setRight(false);
+			if (Instances.player.getInventoryStatus()) {
+				break;
+			}
 			Instances.currentMap.collisionTestDown();
 			break;
 		case KeyEvent.VK_LEFT:
@@ -33,6 +38,9 @@ public class ButtonHandler extends KeyAdapter {
 			Instances.player.setDown(false);
 			Instances.player.setLeft(false);
 			Instances.player.setRight(false);
+			if (Instances.player.getInventoryStatus()) {
+				break;
+			}
 			Instances.currentMap.collisionTestLeft();
 			break;
 		case KeyEvent.VK_RIGHT:
@@ -40,6 +48,9 @@ public class ButtonHandler extends KeyAdapter {
 			Instances.player.setDown(false);
 			Instances.player.setLeft(false);
 			Instances.player.setRight(false);
+			if (Instances.player.getInventoryStatus()) {
+				break;
+			}
 			Instances.currentMap.collisionTestRight();
 			break;
 		case KeyEvent.VK_I:
@@ -49,6 +60,7 @@ public class ButtonHandler extends KeyAdapter {
 			Instances.player.setRight(false);
 			if (!Instances.player.getInventoryStatus()) {
 				Instances.player.setInventory(true);
+				Instances.food_potion_vendor.setInteractionStatus(false);
 				System.out.println(" Pressed I to show the inventory!");
 			} else {
 				Instances.player.setInventory(false);
@@ -60,17 +72,32 @@ public class ButtonHandler extends KeyAdapter {
 			System.out.println("Y = " + Instances.player.getY());
 			break;
 		case KeyEvent.VK_SPACE:
-			System.out.println("megnyomtad a spacet, majd kesobb funckioja is lesz");
+			System.out.println("space pressed");
+			for (NPC npc : Instances.currentMap.listOfNPCs) {
+				System.out.println(npc);
+				if (Instances.player.collisionTest.intersects(npc.interactionRectangle)) {
+					System.out.println("initializing interaction with " + npc.name);
+					npc.interaction();
+				}
+			}
 			break;
+		case KeyEvent.VK_ESCAPE:
+			Instances.player.setInventory(false);
+			Instances.food_potion_vendor.interactionStatus = false;
 		}
+
 		if (Instances.player.sprite_i == 8) {
 			Instances.player.sprite_k *= -1;
+
 		} else if (Instances.player.sprite_i == 0) {
 			Instances.player.sprite_k *= -1;
-		}
-		Instances.player.sprite_i += Instances.player.sprite_k;
 
-		// Instances.Map1.collision();
+		}
+		if (Instances.player.spriteDelayer == 2) {
+			Instances.player.sprite_i += Instances.player.sprite_k;
+			Instances.player.spriteDelayer = 0;
+		} else
+			Instances.player.spriteDelayer += 1;
 
 		Instances.player.update();
 	}
@@ -93,6 +120,8 @@ public class ButtonHandler extends KeyAdapter {
 			System.out.println(" Released RIGHT! ");
 			Instances.player.setRight(false);
 			break;
+		case KeyEvent.VK_SPACE:
+			System.out.println(" Released SPACE");
 		}
 	}
 

@@ -33,7 +33,7 @@ public class DAO {
 
 	}
 
-	//nem része a "adventuresofnealder.beta1"-nek
+	// nem része a "adventuresofnealder.beta1"-nek
 	public static List<Tile> loadpassageWays(String name) {
 		List<Tile> loaderTileList = new ArrayList<>();
 
