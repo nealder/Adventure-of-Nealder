@@ -18,20 +18,36 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Core of the Game. Draws the (fantastic) graphics.
+ * 
+ * @author Bencs Dániel
+ *
+ */
 public class Draw {
 	JFrame frame;
 	Canvas canvas;
-	URL currentMapGround = Game.Instances.Map1.mapImageGround;
-	URL currentMapObjects = Game.Instances.Map1.mapImageObjects;
 	MapHandler currentMap = Game.Instances.Map1;
 
 	BufferStrategy bufferStrategy;
 
+	/**
+	 * The width of the game window.
+	 */
 	private int WIDTH = 640;
+	/**
+	 * The height of the game window.
+	 */
 	private int HEIGHT = 640;
 
+	/**
+	 * The amout between sprites.
+	 */
 	int dx = 63;
 
+	/**
+	 * Initializing the window and canvas.
+	 */
 	Draw() {
 
 		frame = new JFrame("Basic Game");
@@ -56,7 +72,13 @@ public class Draw {
 
 		canvas.setBackground(Color.black);
 
+		/**
+		 * The calling of controller system(keyboard).
+		 */
 		canvas.addKeyListener(new ButtonHandler());
+		/**
+		 * The calling of controller system(mouse).
+		 */
 		canvas.addMouseListener(new MouseListener() {
 
 			@Override
@@ -77,18 +99,14 @@ public class Draw {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//System.out.println("x = " + e.getX() + "/ y = " + e.getY());
+				 System.out.println("x = " + e.getX() + "/ y = " + e.getY());
 				if (e.getX() >= 130 && e.getY() > 100 && e.getX() <= 530 && e.getY() <= 155 && Game.menustatus) {
 					Game.menustatus = false;
 					Game.Instances.player = new Player();
-					Game.Instances.currentMap=Game.Instances.Falucska2;
+					Game.Instances.currentMap = Game.Instances.Falucska2;
 				}
 				if (e.getX() >= 130 && e.getY() > 200 && e.getX() <= 540 && e.getY() <= 255 && Game.menustatus) {
-					try {
-						DAO.saveGamePlay();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
+					DAO.saveGamePlay();
 
 				}
 				if (e.getX() >= 130 && e.getY() > 300 && e.getX() <= 550 && e.getY() <= 355 && Game.menustatus) {
@@ -212,6 +230,11 @@ public class Draw {
 					(int) Game.Instances.player.getY() + 70, 0, 0, 70, 70, null);
 			g.drawImage(ImageIO.read(this.getClass().getResource("/Images/background.png")), 100, 100, 440, 440, null);
 
+			Font font = new Font("Serif", Font.PLAIN, 22);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString(Game.Instances.food_potion_vendor.dialog, 235, 170);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -224,7 +247,7 @@ public class Draw {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (Game.Instances.player.right == true) {
+		if (Game.Instances.player.getRight()) {
 			try {
 				g.drawImage(ImageIO.read(Game.Instances.player.moveRightSprite), (int) Game.Instances.player.getX(),
 						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
@@ -233,7 +256,7 @@ public class Draw {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else if (Game.Instances.player.left == true) {
+		} else if (Game.Instances.player.getLeft()) {
 			try {
 				g.drawImage(ImageIO.read(Game.Instances.player.moveLeftSprite), (int) Game.Instances.player.getX(),
 						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
@@ -242,7 +265,7 @@ public class Draw {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else if (Game.Instances.player.up == true) {
+		} else if (Game.Instances.player.getUp()) {
 			try {
 				g.drawImage(ImageIO.read(Game.Instances.player.moveUpSprite), (int) Game.Instances.player.getX(),
 						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
@@ -251,7 +274,7 @@ public class Draw {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else if (Game.Instances.player.down == true) {
+		} else if (Game.Instances.player.getDown()) {
 			try {
 				g.drawImage(ImageIO.read(Game.Instances.player.moveDownSprite), (int) Game.Instances.player.getX(),
 						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
@@ -268,6 +291,11 @@ public class Draw {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		try {
+			g.drawImage(ImageIO.read(Game.Instances.currentMap.mapImageObjects), 0, 0, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		if (Game.Instances.player.getInventoryStatus() == true) {
 			render_init_playerstat();
@@ -279,7 +307,7 @@ public class Draw {
 		if (Game.Instances.currentMap.mapImageGround.equals(Game.Instances.Falucska2.mapImageGround)
 				&& !Game.Instances.player.getInventoryStatus()) {
 			try {
-				g.drawImage(ImageIO.read(new File(Game.Instances.food_potion_vendor.imageNPC)),
+				g.drawImage(ImageIO.read(Game.Instances.food_potion_vendor.imageNPC),
 						Game.Instances.food_potion_vendor.x, Game.Instances.food_potion_vendor.y,
 						Game.Instances.food_potion_vendor.x + 70, Game.Instances.food_potion_vendor.y + 70, 0, 0, 75,
 						65, null);
@@ -302,12 +330,6 @@ public class Draw {
 		for (Rectangle rec : Game.Instances.currentMap.unpassableRectangle) {
 			g.drawRect((int) rec.x, (int) rec.y, (int) rec.getWidth(), (int) rec.getHeight());
 		}
-
-		/*
-		 * try { g.drawImage(ImageIO.read(new
-		 * File(Instances.currentMap.mapImageObjects)), 0, 0, null); } catch
-		 * (IOException e) { e.printStackTrace(); }
-		 */
 
 	}
 

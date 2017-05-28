@@ -1,5 +1,11 @@
 package Game;
 
+/**
+ * Currently unused. Far from developping into the project.
+ * 
+ * @author Nealder
+ *
+ */
 public class Item {
 
 	public int GoldValue;

@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,9 +16,22 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import Game.MapHandler.Tile;
-
+/**
+ * 
+ * Saves and loads data.
+ * 
+ * @author Bencs Dániel
+ *
+ */
 public class DAO {
 
+	/**
+	 * 
+	 * Loads the list of unpassable tiles.
+	 * 
+	 * @param name - name of the file which contains the tiles
+	 * @return - a list that contains the unpassable tiles
+	 */
 	public static List<Tile> loadUnpassableTiles(String name) {
 		List<Tile> loaderTileList = new ArrayList<>();
 
@@ -42,10 +56,13 @@ public class DAO {
 
 	}
 
+	/**
+	 * Saves the current game, including player position on map and player stats.
+	 */
 	@SuppressWarnings("unchecked")
-	public static void saveGamePlay() throws IOException {
+	public static void saveGamePlay() {
 		JSONObject obj = new JSONObject();
-		FileWriter fileWriter = new FileWriter("src/main/resources/GamePlay/asd.json");
+		FileWriter fileWriter;
 
 		obj.put("x", Game.Instances.player.getX());
 		obj.put("y", Game.Instances.player.getY());
@@ -61,16 +78,20 @@ public class DAO {
 		obj.put("map", Game.Instances.currentMap.name);
 
 		try {
+			fileWriter = new FileWriter("src/main/resources/GamePlay/asd.json");
 			fileWriter.write(obj.toJSONString());
+			fileWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			fileWriter.close();
-			System.out.println("saved");
+			//System.out.println("saved");
 		}
 
 	}
 
+	/**
+	 * Loads a saved game.
+	 */
 	public static void loadGamePlay() {
 		JSONParser parser = new JSONParser();
 
@@ -109,6 +130,12 @@ public class DAO {
 
 	}
 
+	/**
+	 * Not part of the current game version. Loads the tiles where the player can pass to another map.
+	 * 
+	 * @param name - name of the file which contains the tiles
+	 * @return - a list that contains the tiles of passageways
+	 */
 	// nem része a "adventuresofnealder.beta1"-nek
 	public List<Tile> loadpassageWays(String name) {
 		List<Tile> loaderTileList = new ArrayList<>();

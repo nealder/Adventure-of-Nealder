@@ -3,12 +3,23 @@ package Game;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * The class that handles inputs from keyboard.
+ * 
+ * @author Nealder
+ *
+ */
 public class ButtonHandler extends KeyAdapter {
 
+	/**
+	 * Constructor
+	 */
 	public ButtonHandler() {
-		//System.out.println(" Button handler initialised! ");
 	}
 
+	/**
+	 * Procedure which is called by the parent canvas each time a keyboard input happens.
+	 */
 	public void keyPressed(KeyEvent key) {
 		Game.Instances.currentMap.handlePassageWay();
 
@@ -76,7 +87,7 @@ public class ButtonHandler extends KeyAdapter {
 			for (NPC npc : Game.Instances.currentMap.listOfNPCs) {
 				System.out.println(npc);
 				if (Game.Instances.player.collisionTest.intersects(npc.interactionRectangle)) {
-					//System.out.println("initializing interaction with " + npc.name);
+					System.out.println("initializing interaction with " + npc.name);
 					npc.interaction();
 				}
 			}
@@ -105,6 +116,9 @@ public class ButtonHandler extends KeyAdapter {
 		Game.Instances.player.update();
 	}
 
+	/**
+	 * Procedure which is called by the parent canvas every time a keyboard input stops happening.
+	 */
 	public void keyReleased(KeyEvent key) {
 		switch (key.getKeyCode()) {
 		case KeyEvent.VK_UP:
@@ -128,6 +142,9 @@ public class ButtonHandler extends KeyAdapter {
 		}
 	}
 
+	/**
+	 * Currently unused.
+	 */
 	public void keyTyped(KeyEvent key) {
 
 	}

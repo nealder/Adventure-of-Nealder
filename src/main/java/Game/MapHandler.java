@@ -5,43 +5,93 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handler of the whole map system.
+ * 
+ * @author Bencs Dániel
+ *
+ */
 public class MapHandler {
 
+	/**
+	 * Name of the map. Currently slightly missleading.
+	 */
 	public String name;
+	/**
+	 * The location of the ground image of the map.
+	 */
 	public URL mapImageGround;
+	/**
+	 * List of the npc's located on the map.
+	 */
 	public List<NPC> listOfNPCs = new ArrayList<NPC>();
 
 	// nem része a "adventuresofnealder.beta1"-nek
+	/**
+	 * The location of the object image of the map.
+	 */
 	public URL mapImageObjects;
 
+	/**
+	 * The list of the tiles which are unpassable by player.
+	 */
 	public List<Tile> unpassableTiles;
+	/**
+	 * The list of rectangles that are used to collision test with player.
+	 */
 	public List<Rectangle> unpassableRectangle = new ArrayList<Rectangle>();
 
 	// nem része a "adventuresofnealder.beta1"-nek
+	/**
+	 * Currently unused. The list of tiles where the player can get to another map.
+	 */
 	public List<Tile> passageWays;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param mapImageGround - the location of the ground image of the map
+	 * @param mapImageObjects - the location of the object image of the map
+	 * @param name - the name of the map
+	 */
 	public MapHandler(URL mapImageGround, URL mapImageObjects, String name) {
 		// super();
 		//System.out.println("maphandler initializing with " + name);
-		unpassableTiles = DAO.loadUnpassableTiles(name); //unpassableTiles = Game.Instances.dao.loadUnpassableTiles(name);
+		//unpassableTiles = Game.Instances.dao.loadUnpassableTiles(name); 
+		unpassableTiles = DAO.loadUnpassableTiles(name);
 		unpassableTilesTOunpassableRectangle();
 		this.name=name;
 		this.mapImageGround = mapImageGround;
 		this.mapImageObjects = mapImageObjects;
 	}
 
+	/**
+	 * Nested class of MapHandler. Handles tiles.
+	 * 
+	 * @author Nealder
+	 *
+	 */
 	public static class Tile {
 		int x;
 		int y;
 		int dx = 32;
 		int dy = 32;
 
+		/**
+		 * Constructor
+		 * 
+		 * @param x - the x component of the tile's ID
+		 * @param y - the y component of the tile's ID
+		 */
 		public Tile(int x, int y) {
 			this.x = x;
 			this.y = y;
 		}
 	}
 
+	/**
+	 * Loading the unpassable rectangles's list using the tile list.
+	 */
 	public void unpassableTilesTOunpassableRectangle() {
 		for (Tile imp : this.unpassableTiles) {
 			this.unpassableRectangle.add(new Rectangle((imp.x - 1) * 32, (imp.y - 1) * 32, 32, 32));
@@ -49,6 +99,9 @@ public class MapHandler {
 		}
 	}
 
+	/**
+	 * Currently alpha (functionally) version of passageway handling. Tests the passageways if the player is in them. If so, the corresponding map loads in.
+	 */
 	public void handlePassageWay() {
 		if (Game.Instances.player.collisionTest.getX() >= 570 && Game.Instances.player.collisionTest.getY() >= 155
 				&& Game.Instances.player.collisionTest.getY() <= 190
@@ -97,6 +150,10 @@ public class MapHandler {
 
 	}
 
+	/**
+	 * Collision tester of the player and the unpassable rectangles from down. If collision,
+	 *  then counters the movement that caused collision for smooth continous "in-place" movement.
+	 */
 	public void collisionTestUp() {
 		for (Rectangle rec : Game.Instances.currentMap.unpassableRectangle) {
 			if (Game.Instances.player.collisionTest.intersects(rec)
@@ -112,6 +169,10 @@ public class MapHandler {
 		}
 	}
 
+	/**
+	 * Collision tester of the player and the unpassable rectangles from up. If collision,
+	 *  then counters the movement that caused collision for smooth continous "in-place" movement.
+	 */
 	public void collisionTestDown() {
 		for (Rectangle rec : Game.Instances.currentMap.unpassableRectangle) {
 			if (Game.Instances.player.collisionTest.intersects(rec)
@@ -128,6 +189,10 @@ public class MapHandler {
 
 	}
 
+	/**
+	 * Collision tester of the player and the unpassable rectangles from right. If collision,
+	 *  then counters the movement that caused collision for smooth continous "in-place" movement.
+	 */
 	public void collisionTestLeft() {
 		for (Rectangle rec : Game.Instances.currentMap.unpassableRectangle) {
 			if (Game.Instances.player.collisionTest.intersects(rec)
@@ -143,7 +208,11 @@ public class MapHandler {
 		}
 
 	}
-
+	
+	/**
+	 * Collision tester of the player and the unpassable rectangles from left. If collision,
+	 *  then counters the movement that caused collision for smooth continous "in-place" movement.
+	 */
 	public void collisionTestRight() {
 		for (Rectangle rec : Game.Instances.currentMap.unpassableRectangle) {
 			if (Game.Instances.player.collisionTest.intersects(rec)
