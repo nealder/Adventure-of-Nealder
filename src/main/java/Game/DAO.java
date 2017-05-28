@@ -2,9 +2,17 @@ package Game;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import Game.MapHandler.Tile;
 
@@ -15,7 +23,7 @@ public class DAO {
 
 		String line;
 		try {
-			Scanner s = new Scanner(new File("src/main/resources/Maps/" + name));
+			Scanner s = new Scanner(new File("src/main/resources/Maps/" + "/" + name)); // this.getClass().getResourceAsStream
 			while (s.hasNext()) {
 				line = (s.next());
 				String[] linearray;
@@ -23,9 +31,10 @@ public class DAO {
 				loaderTileList.add(new MapHandler.Tile(Integer.parseInt(linearray[0]), Integer.parseInt(linearray[1])));
 			}
 			s.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -33,13 +42,80 @@ public class DAO {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	public static void saveGamePlay() throws IOException {
+		JSONObject obj = new JSONObject();
+		FileWriter fileWriter = new FileWriter("src/main/resources/GamePlay/asd.json");
+
+		obj.put("x", Game.Instances.player.getX());
+		obj.put("y", Game.Instances.player.getY());
+		obj.put("name", Game.Instances.player.getName());
+		obj.put("currentLife", Game.Instances.player.getCurrentLife());
+		obj.put("strength", Game.Instances.player.getStrength());
+		obj.put("stamina", Game.Instances.player.getStamina());
+		obj.put("maxlife", Game.Instances.player.getLife());
+		obj.put("magic", Game.Instances.player.getMagic());
+		obj.put("critical chance", Game.Instances.player.getCritical_chance());
+		obj.put("critical damage", Game.Instances.player.getCritical_dmg());
+		obj.put("armor", Game.Instances.player.getArmor());
+		obj.put("map", Game.Instances.currentMap.name);
+
+		try {
+			fileWriter.write(obj.toJSONString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			fileWriter.close();
+			System.out.println("saved");
+		}
+
+	}
+
+	public static void loadGamePlay() {
+		JSONParser parser = new JSONParser();
+
+		try {
+
+			Object obj = parser.parse(new FileReader("src/main/resources/GamePlay/asd.json"));
+
+			JSONObject jsonObject = (JSONObject) obj;
+
+			Game.Instances.player.setName((String) jsonObject.get("name"));
+			Game.Instances.player.setX((int) (long) (double) jsonObject.get("x"));
+			Game.Instances.player.setY((int) (long) (double) jsonObject.get("y"));
+			Game.Instances.player.setCurrentLife((int) (long) jsonObject.get("currentLife"));
+			Game.Instances.player.setStrength((int) (long) jsonObject.get("strength"));
+			Game.Instances.player.setStamina((int) (long) jsonObject.get("stamina"));
+			Game.Instances.player.setLife((int) (long) jsonObject.get("maxlife"));
+			Game.Instances.player.setMagic((int) (long) jsonObject.get("magic"));
+			Game.Instances.player.setCritical_chance((float) (double) jsonObject.get("critical chance"));
+			Game.Instances.player.setCritical_dmg((float) (double) jsonObject.get("critical damage"));
+			Game.Instances.player.setArmor((int) (long) jsonObject.get("armor"));
+			for (MapHandler map : Game.Instances.collectionMap) {
+
+				if (map.name.equals(((String) jsonObject.get("map")))) {
+					Game.Instances.currentMap = map;
+
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	// nem része a "adventuresofnealder.beta1"-nek
-	public static List<Tile> loadpassageWays(String name) {
+	public List<Tile> loadpassageWays(String name) {
 		List<Tile> loaderTileList = new ArrayList<>();
 
 		String line;
 		try {
-			Scanner s = new Scanner(new File("src/main/resources/Maps/" + name));
+			Scanner s = new Scanner(this.getClass().getResourceAsStream("/Maps/" + name));
 			while (s.hasNext()) {
 				line = (s.next());
 				String[] linearray;
@@ -47,8 +123,6 @@ public class DAO {
 				loaderTileList.add(new MapHandler.Tile(Integer.parseInt(linearray[0]), Integer.parseInt(linearray[1])));
 			}
 			s.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}

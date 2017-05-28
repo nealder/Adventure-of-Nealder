@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Instances {
 	public Player player = new Player();
+	public DAO dao = new DAO();
 	public NPC food_potion_vendor = new NPC(560, 70, 120, 120,
 			"src/main/resources/Images/food&Potion_vendor_onesprite.png", "Helga, the food and potion vendor");
 

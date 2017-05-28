@@ -7,6 +7,7 @@ import java.util.List;
 
 public class MapHandler {
 
+	public String name;
 	public URL mapImageGround;
 	public List<NPC> listOfNPCs = new ArrayList<NPC>();
 
@@ -21,9 +22,10 @@ public class MapHandler {
 
 	public MapHandler(URL mapImageGround, URL mapImageObjects, String name) {
 		// super();
-		System.out.println("maphandler initializing with " + name);
-		unpassableTiles = DAO.loadUnpassableTiles(name);
+		//System.out.println("maphandler initializing with " + name);
+		unpassableTiles = DAO.loadUnpassableTiles(name); //unpassableTiles = Game.Instances.dao.loadUnpassableTiles(name);
 		unpassableTilesTOunpassableRectangle();
+		this.name=name;
 		this.mapImageGround = mapImageGround;
 		this.mapImageObjects = mapImageObjects;
 	}

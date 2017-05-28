@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.io.File;
 import java.io.IOException;
@@ -55,14 +57,88 @@ public class Draw {
 		canvas.setBackground(Color.black);
 
 		canvas.addKeyListener(new ButtonHandler());
+		canvas.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//System.out.println("x = " + e.getX() + "/ y = " + e.getY());
+				if (e.getX() >= 130 && e.getY() > 100 && e.getX() <= 530 && e.getY() <= 155 && Game.menustatus) {
+					Game.menustatus = false;
+					Game.Instances.player = new Player();
+					Game.Instances.currentMap=Game.Instances.Falucska2;
+				}
+				if (e.getX() >= 130 && e.getY() > 200 && e.getX() <= 540 && e.getY() <= 255 && Game.menustatus) {
+					try {
+						DAO.saveGamePlay();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+
+				}
+				if (e.getX() >= 130 && e.getY() > 300 && e.getX() <= 550 && e.getY() <= 355 && Game.menustatus) {
+					DAO.loadGamePlay();
+					Game.menustatus = false;
+				}
+				if (e.getX() >= 130 && e.getY() > 400 && e.getX() <= 310 && e.getY() <= 455 && Game.menustatus) {
+					System.exit(0);
+				}
+			}
+		});
+
 	}
 
 	void render() {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
-		render(g);
+		if (!Game.menustatus) {
+			render(g);
+		} else {
+			render_menu(g);
+		}
 		g.dispose();
 		bufferStrategy.show();
+	}
+
+	private void render_menu(Graphics2D g) {
+		try {
+			g.drawImage(ImageIO.read(this.getClass().getResource("/Images/background.png")), 0, 0, WIDTH, HEIGHT, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		Font font = new Font("century", Font.PLAIN, 64);
+		g.setFont(font);
+		g.setColor(Color.black);
+		g.drawString("NEW GAME", 140, 150);
+
+		g.setFont(font);
+		g.setColor(Color.black);
+		g.drawString("SAVE GAME", 140, 250);
+
+		g.setFont(font);
+		g.setColor(Color.black);
+		g.drawString("LOAD GAME", 140, 350);
+
+		g.setFont(font);
+		g.setColor(Color.black);
+		g.drawString("EXIT", 140, 450);
+
 	}
 
 	void render_init_playerstat() {
@@ -82,17 +158,17 @@ public class Draw {
 			g.setColor(Color.GRAY);
 			g.drawString("Nealder", 150, 130);
 
-			g.drawImage(ImageIO.read(new File(Game.Instances.player.moveDownSprite)), 280, 0, 350, 70, 0, 0, 70, 70, null);
+			g.drawImage(ImageIO.read(Game.Instances.player.moveDownSprite), 280, 0, 350, 70, 0, 0, 70, 70, null);
 
 			font = new Font("Serif", Font.PLAIN, 22);
 			g.setFont(font);
 			g.drawString("Life", 50, 190);
 			g.drawString(":", 150, 190);
-			g.drawString(new Integer(Game.Instances.player.getLife()).toString() + " / " + Game.Instances.player.getCurrentLife(),
-					165, 192);
+			g.drawString(new Integer(Game.Instances.player.getLife()).toString() + " / "
+					+ Game.Instances.player.getCurrentLife(), 165, 192);
 			g.drawString("Strength", 50, 220);
 			g.drawString(":", 150, 220);
-			g.drawString(new Integer(Game.Instances.player.getStrenght()).toString(), 165, 222);
+			g.drawString(new Integer(Game.Instances.player.getStrength()).toString(), 165, 222);
 			g.drawString("Stamina", 50, 250);
 			g.drawString(":", 150, 250);
 			g.drawString(new Integer(Game.Instances.player.getStamina()).toString(), 165, 252);
@@ -131,7 +207,7 @@ public class Draw {
 	private void render_interactionNPC(Graphics2D g, NPC npc) {
 		try {
 			g.drawImage(ImageIO.read(Game.Instances.currentMap.mapImageGround), 0, 0, null);
-			g.drawImage(ImageIO.read(new File(Game.Instances.player.moveDownSprite)), (int) Game.Instances.player.getX(),
+			g.drawImage(ImageIO.read(Game.Instances.player.moveDownSprite), (int) Game.Instances.player.getX(),
 					(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
 					(int) Game.Instances.player.getY() + 70, 0, 0, 70, 70, null);
 			g.drawImage(ImageIO.read(this.getClass().getResource("/Images/background.png")), 100, 100, 440, 440, null);
@@ -150,7 +226,7 @@ public class Draw {
 		}
 		if (Game.Instances.player.right == true) {
 			try {
-				g.drawImage(ImageIO.read(new File(Game.Instances.player.moveRightSprite)), (int) Game.Instances.player.getX(),
+				g.drawImage(ImageIO.read(Game.Instances.player.moveRightSprite), (int) Game.Instances.player.getX(),
 						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
 						(int) Game.Instances.player.getY() + 70, 0 + dx * Game.Instances.player.sprite_i, 0,
 						dx + dx * Game.Instances.player.sprite_i, 70, null);
@@ -159,7 +235,7 @@ public class Draw {
 			}
 		} else if (Game.Instances.player.left == true) {
 			try {
-				g.drawImage(ImageIO.read(new File(Game.Instances.player.moveLeftSprite)), (int) Game.Instances.player.getX(),
+				g.drawImage(ImageIO.read(Game.Instances.player.moveLeftSprite), (int) Game.Instances.player.getX(),
 						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
 						(int) Game.Instances.player.getY() + 70, 0 + dx * Game.Instances.player.sprite_i, 0,
 						dx + dx * Game.Instances.player.sprite_i, 70, null);
@@ -168,7 +244,7 @@ public class Draw {
 			}
 		} else if (Game.Instances.player.up == true) {
 			try {
-				g.drawImage(ImageIO.read(new File(Game.Instances.player.moveUpSprite)), (int) Game.Instances.player.getX(),
+				g.drawImage(ImageIO.read(Game.Instances.player.moveUpSprite), (int) Game.Instances.player.getX(),
 						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
 						(int) Game.Instances.player.getY() + 70, 0 + dx * Game.Instances.player.sprite_i, 0,
 						dx + dx * Game.Instances.player.sprite_i, 70, null);
@@ -177,7 +253,7 @@ public class Draw {
 			}
 		} else if (Game.Instances.player.down == true) {
 			try {
-				g.drawImage(ImageIO.read(new File(Game.Instances.player.moveDownSprite)), (int) Game.Instances.player.getX(),
+				g.drawImage(ImageIO.read(Game.Instances.player.moveDownSprite), (int) Game.Instances.player.getX(),
 						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
 						(int) Game.Instances.player.getY() + 70, 0 + dx * Game.Instances.player.sprite_i, 0,
 						dx + dx * Game.Instances.player.sprite_i, 70, null);
@@ -186,7 +262,7 @@ public class Draw {
 			}
 		} else
 			try {
-				g.drawImage(ImageIO.read(new File(Game.Instances.player.moveDownSprite)), (int) Game.Instances.player.getX(),
+				g.drawImage(ImageIO.read(Game.Instances.player.moveDownSprite), (int) Game.Instances.player.getX(),
 						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
 						(int) Game.Instances.player.getY() + 70, 0, 0, 70, 70, null);
 			} catch (IOException e) {
@@ -205,7 +281,8 @@ public class Draw {
 			try {
 				g.drawImage(ImageIO.read(new File(Game.Instances.food_potion_vendor.imageNPC)),
 						Game.Instances.food_potion_vendor.x, Game.Instances.food_potion_vendor.y,
-						Game.Instances.food_potion_vendor.x + 70, Game.Instances.food_potion_vendor.y + 70, 0, 0, 75, 65, null);
+						Game.Instances.food_potion_vendor.x + 70, Game.Instances.food_potion_vendor.y + 70, 0, 0, 75,
+						65, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -213,7 +290,8 @@ public class Draw {
 
 		g.setColor(Color.red);
 		g.drawRect((int) Game.Instances.player.collisionTest.getX(), (int) Game.Instances.player.collisionTest.getY(),
-				(int) Game.Instances.player.collisionTest.getWidth(), (int) Game.Instances.player.collisionTest.getHeight());
+				(int) Game.Instances.player.collisionTest.getWidth(),
+				(int) Game.Instances.player.collisionTest.getHeight());
 		if (Game.Instances.currentMap == Game.Instances.Falucska2) {
 			g.setColor(Color.blue);
 			g.drawRect(Game.Instances.food_potion_vendor.x, Game.Instances.food_potion_vendor.y,

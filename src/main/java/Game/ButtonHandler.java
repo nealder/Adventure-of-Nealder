@@ -82,8 +82,11 @@ public class ButtonHandler extends KeyAdapter {
 			}
 			break;
 		case KeyEvent.VK_ESCAPE:
-			Game.Instances.player.setInventory(false);
-			Game.Instances.food_potion_vendor.interactionStatus = false;
+			if(Game.Instances.player.getInventoryStatus() || Game.Instances.food_potion_vendor.interactionStatus || Game.menustatus){
+				Game.Instances.player.setInventory(false);
+				Game.Instances.food_potion_vendor.interactionStatus = false;
+				Game.menustatus=false;
+			}else Game.menustatus=true;
 		}
 
 		if (Game.Instances.player.sprite_i == 8) {

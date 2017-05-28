@@ -1,28 +1,59 @@
 package Game;
 
 import java.awt.Rectangle;
+import java.net.URL;
 import java.util.List;
 
 public class Player {
 
-	private float x = 380;
-	private float y = 90;
+	private int x;
+	private int y;
 	public int sprite_i = 0;
 	public int sprite_k = -1;
 	public boolean left, right, up, down, inventory;
 	public int spriteDelayer;
 	private String Name;
 	public List<Item> inventoryList;
-	public Rectangle collisionTest = new Rectangle((int) x + 10, (int) y + 30, 30, 30);
-	public String moveRightSprite = "src/main/resources/Images/MoveRightSprite.png";
-	public String moveUpSprite = "src/main/resources/Images/MoveUpSprite.png";
-	public String moveDownSprite = "src/main/resources/Images/MoveDownSprite.png";
-	public String moveLeftSprite = "src/main/resources/Images/MoveLeftSprite.png";
+	public Rectangle collisionTest;
+	public URL moveRightSprite = this.getClass().getResource("/Images/MoveRightSprite.png");
+	public URL moveUpSprite = this.getClass().getResource("/Images/MoveUpSprite.png");
+	public URL moveDownSprite = this.getClass().getResource("/Images/MoveDownSprite.png");
+	public URL moveLeftSprite = this.getClass().getResource("/Images/MoveLeftSprite.png");
 
-	public int currentLife = 30;
+	public int currentLife;
 
-	public int strenght = 1, stamina = 1, maxLife = 40, magic = 1;
-	public float critical_chance = (float) 0.0500, critical_dmg = (float) 2.0000;
+	public Player() {
+		super();
+		strength = 1;
+		stamina = 1;
+		maxLife = 40;
+		magic = 1;
+		critical_chance = (float) 0.0500;
+		critical_dmg = (float) 2.0000;
+		currentLife = 30;
+		y = 90;
+		x = 380;
+		collisionTest = new Rectangle((int) x + 10, (int) y + 30, 30, 30);
+	}
+
+	public Player(int x, int y, String name, int currentLife, int strenght, int stamina, int maxLife, int magic,
+			float critical_chance, float critical_dmg, int armor) {
+		super();
+		this.x = x;
+		this.y = y;
+		Name = name;
+		this.currentLife = currentLife;
+		this.strength = strenght;
+		this.stamina = stamina;
+		this.maxLife = maxLife;
+		this.magic = magic;
+		this.critical_chance = critical_chance;
+		this.critical_dmg = critical_dmg;
+		this.armor = armor;
+	}
+
+	public int strength, stamina, maxLife, magic;
+	public float critical_chance, critical_dmg;
 	public int armor;
 
 	public void update() {
@@ -102,12 +133,12 @@ public class Player {
 		this.currentLife = currentLife;
 	}
 
-	public int getStrenght() {
-		return strenght;
+	public int getStrength() {
+		return strength;
 	}
 
-	public void setStrenght(int strenght) {
-		this.strenght = strenght;
+	public void setStrength(int strenght) {
+		this.strength = strenght;
 	}
 
 	public int getStamina() {
@@ -156,5 +187,105 @@ public class Player {
 
 	public void setArmor(int armor) {
 		this.armor = armor;
+	}
+
+	public int getSprite_i() {
+		return sprite_i;
+	}
+
+	public void setSprite_i(int sprite_i) {
+		this.sprite_i = sprite_i;
+	}
+
+	public int getSprite_k() {
+		return sprite_k;
+	}
+
+	public void setSprite_k(int sprite_k) {
+		this.sprite_k = sprite_k;
+	}
+
+	public int getSpriteDelayer() {
+		return spriteDelayer;
+	}
+
+	public void setSpriteDelayer(int spriteDelayer) {
+		this.spriteDelayer = spriteDelayer;
+	}
+
+	public List<Item> getInventoryList() {
+		return inventoryList;
+	}
+
+	public void setInventoryList(List<Item> inventoryList) {
+		this.inventoryList = inventoryList;
+	}
+
+	public Rectangle getCollisionTest() {
+		return collisionTest;
+	}
+
+	public void setCollisionTest(Rectangle collisionTest) {
+		this.collisionTest = collisionTest;
+	}
+
+	public URL getMoveRightSprite() {
+		return moveRightSprite;
+	}
+
+	public void setMoveRightSprite(URL moveRightSprite) {
+		this.moveRightSprite = moveRightSprite;
+	}
+
+	public URL getMoveUpSprite() {
+		return moveUpSprite;
+	}
+
+	public void setMoveUpSprite(URL moveUpSprite) {
+		this.moveUpSprite = moveUpSprite;
+	}
+
+	public URL getMoveDownSprite() {
+		return moveDownSprite;
+	}
+
+	public void setMoveDownSprite(URL moveDownSprite) {
+		this.moveDownSprite = moveDownSprite;
+	}
+
+	public URL getMoveLeftSprite() {
+		return moveLeftSprite;
+	}
+
+	public void setMoveLeftSprite(URL moveLeftSprite) {
+		this.moveLeftSprite = moveLeftSprite;
+	}
+
+	public int getMaxLife() {
+		return maxLife;
+	}
+
+	public void setMaxLife(int maxLife) {
+		this.maxLife = maxLife;
+	}
+
+	public boolean isLeft() {
+		return left;
+	}
+
+	public boolean isRight() {
+		return right;
+	}
+
+	public boolean isUp() {
+		return up;
+	}
+
+	public boolean isDown() {
+		return down;
+	}
+
+	public boolean isInventory() {
+		return inventory;
 	}
 }
