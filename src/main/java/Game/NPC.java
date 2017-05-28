@@ -26,7 +26,7 @@ public class NPC {
 
 	public void interaction() {
 		interactionStatus = true;
-		Instances.player.setInventory(false);
+		Game.Instances.player.setInventory(false);
 	}
 
 	public boolean getInteractionStatus() {
