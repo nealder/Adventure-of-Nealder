@@ -1,4 +1,6 @@
-package Game;
+package View;
+
+import Control.Instances;
 
 /**
  * Second "Main" class for better later perspectives.
@@ -18,7 +20,7 @@ public class Game implements Runnable {
 	/**
 	 * Menu status of splitting adventure mode and menu.
 	 */
-	static boolean menustatus=true;
+	private static boolean menustatus=true;
 
 	/**
 	 * Thread running.
@@ -35,5 +37,23 @@ public class Game implements Runnable {
 
 		}
 
+	}
+
+	/**
+	 * Returns the indicator of the menu.
+	 * 
+	 * @return - menustatus
+	 */
+	public static boolean isMenustatus() {
+		return menustatus;
+	}
+
+	/**
+	 * Sets the indicator of the menu.
+	 * 
+	 * @param menustatus - to menustatus
+	 */
+	public static void setMenustatus(boolean menustatus) {
+		Game.menustatus = menustatus;
 	}
 }

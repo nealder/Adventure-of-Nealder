@@ -1,7 +1,12 @@
-package Game;
+package Control;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import DAO.DAO;
+import Model.MapHandler;
+import Model.NPC;
+import Model.Player;
 
 /**
  * The class we store core data like map, npc, player.

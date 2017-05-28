@@ -1,7 +1,9 @@
-package Game;
+package Model;
 
 import java.awt.Rectangle;
 import java.net.URL;
+
+import Control.Instances;
 
 /**
  * Non Personcontrolled Characters. They are different so they can't be players too.

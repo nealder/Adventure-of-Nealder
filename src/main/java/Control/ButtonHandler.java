@@ -1,7 +1,10 @@
-package Game;
+package Control;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import Model.NPC;
+import View.Game;
 
 /**
  * The class that handles inputs from keyboard.
@@ -95,11 +98,11 @@ public class ButtonHandler extends KeyAdapter {
 			}
 			break;
 		case KeyEvent.VK_ESCAPE:
-			if(Instances.player.getInventoryStatus() || Game.Instances.food_potion_vendor.interactionStatus || Game.menustatus){
+			if(Instances.player.getInventoryStatus() || Game.Instances.food_potion_vendor.interactionStatus || Game.isMenustatus()){
 				Instances.player.setInventory(false);
 				Game.Instances.food_potion_vendor.interactionStatus = false;
-				Game.menustatus=false;
-			}else Game.menustatus=true;
+				Game.setMenustatus(false);
+			}else Game.setMenustatus(true);
 		}
 
 		if (Instances.player.sprite_i == 8) {

@@ -1,4 +1,4 @@
-package Game;
+package View;
 
 import java.awt.Canvas;
 
@@ -16,6 +16,12 @@ import javax.swing.JPanel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import Control.ButtonHandler;
+import Control.Instances;
+import Model.MapHandler;
+import Model.NPC;
+import Model.Player;
 
 /**
  * Core of the Game. Draws the (fantastic) graphics.
@@ -111,20 +117,20 @@ public class Draw {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				 System.out.println("x = " + e.getX() + "/ y = " + e.getY());
-				if (e.getX() >= 130 && e.getY() > 100 && e.getX() <= 530 && e.getY() <= 155 && Game.menustatus) {
-					Game.menustatus = false;
+				if (e.getX() >= 130 && e.getY() > 100 && e.getX() <= 530 && e.getY() <= 155 && Game.isMenustatus()) {
+					Game.setMenustatus(false);
 					Instances.player = new Player();
 					Game.Instances.currentMap = Game.Instances.Falucska2;
 				}
-				if (e.getX() >= 130 && e.getY() > 200 && e.getX() <= 540 && e.getY() <= 255 && Game.menustatus) {
+				if (e.getX() >= 130 && e.getY() > 200 && e.getX() <= 540 && e.getY() <= 255 && Game.isMenustatus()) {
 					Instances.dao.saveGamePlay();
 
 				}
-				if (e.getX() >= 130 && e.getY() > 300 && e.getX() <= 550 && e.getY() <= 355 && Game.menustatus) {
+				if (e.getX() >= 130 && e.getY() > 300 && e.getX() <= 550 && e.getY() <= 355 && Game.isMenustatus()) {
 					Instances.dao.loadGamePlay();
-					Game.menustatus = false;
+					Game.setMenustatus(false);
 				}
-				if (e.getX() >= 130 && e.getY() > 400 && e.getX() <= 310 && e.getY() <= 455 && Game.menustatus) {
+				if (e.getX() >= 130 && e.getY() > 400 && e.getX() <= 310 && e.getY() <= 455 && Game.isMenustatus()) {
 					System.exit(0);
 				}
 			}
@@ -138,7 +144,7 @@ public class Draw {
 	void render() {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
-		if (!Game.menustatus) {
+		if (!Game.isMenustatus()) {
 			render(g);
 		} else {
 			render_menu(g);

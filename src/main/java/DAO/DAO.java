@@ -1,4 +1,4 @@
-package Game;
+package DAO;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -18,7 +18,10 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import Game.MapHandler.Tile;
+import Control.Instances;
+import Model.MapHandler;
+import Model.MapHandler.Tile;
+import View.Game;
 /**
  * 
  * Saves and loads data.

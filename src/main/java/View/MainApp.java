@@ -1,4 +1,6 @@
-package Game;
+package View;
+
+import DAO.Load;
 
 /**
  * Main class of the porjekt.

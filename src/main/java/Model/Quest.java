@@ -1,4 +1,4 @@
-package Game;
+package Model;
 
 /**
  * Currently unused. The class which in we handle game quests, which the player can complete.

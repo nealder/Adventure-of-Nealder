@@ -1,7 +1,9 @@
-package Game;
+package Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import Control.Instances;
+import View.Game;
 
 import java.awt.Rectangle;
 import java.net.URL;

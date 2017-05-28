@@ -1,4 +1,4 @@
-package Game;
+package Model;
 
 /**
  * Currently unused. Far from developping into the project.
