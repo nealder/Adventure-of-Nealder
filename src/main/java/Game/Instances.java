@@ -15,14 +15,14 @@ public class Instances {
 	public NPC food_potion_vendor = new NPC(560, 70, 120, 120,
 			this.getClass().getResource("/Images/food&Potion_vendor_onesprite.png"), "Helga, the food and potion vendor");
 
-	public MapHandler currentMap = new MapHandler(this.getClass().getResource("/falucska2_Ground.png"),
-			this.getClass().getResource("/Maps/falucska2_obejcts.png"), "/falucska2unpassableTiles");
+	public MapHandler currentMap = new MapHandler(this.getClass().getResource("/Maps/falucska2_Ground.png"),
+			this.getClass().getResource("/Maps/falucska2_objects.png"), "/falucska2unpassableTiles");
 
-	public MapHandler Map1 = new MapHandler(this.getClass().getResource("/Map1_Ground.png"),
+	public MapHandler Map1 = new MapHandler(this.getClass().getResource("/Maps/Map1_Ground.png"),
 			this.getClass().getResource("/Maps/Map1_Objects.png"), "/Map1unpassableTiles2");
-	public MapHandler Map2 = new MapHandler(this.getClass().getResource("/Map2_Ground.png"),
+	public MapHandler Map2 = new MapHandler(this.getClass().getResource("/Maps/Map2_Ground.png"),
 			this.getClass().getResource("/Maps/Map2_Objects.png"), "/Map2unpassableTiles");
-	public MapHandler Falucska1 = new MapHandler(this.getClass().getResource("/falucska1_Ground.png"),
+	public MapHandler Falucska1 = new MapHandler(this.getClass().getResource("/Maps/falucska1_Ground.png"),
 			this.getClass().getResource("/Maps/falucska1_Objects.png"), "/falucska1unpassableTiles");
 	public MapHandler Falucska2 = new MapHandler(this.getClass().getResource("/Maps/falucska2_Ground.png"),
 			this.getClass().getResource("/Maps/falucska2_obejcts.png"), "/falucska2unpassableTiles");
