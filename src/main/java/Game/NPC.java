@@ -74,7 +74,7 @@ public class NPC {
 	 */
 	public void interaction() {
 		interactionStatus = true;
-		Game.Instances.player.setInventory(false);
+		Instances.player.setInventory(false);
 		dialog="Sorry, not yet the time.";
 	}
 

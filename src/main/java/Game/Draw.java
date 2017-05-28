@@ -6,17 +6,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Core of the Game. Draws the (fantastic) graphics.
@@ -25,6 +24,10 @@ import javax.swing.JPanel;
  *
  */
 public class Draw {
+	/**
+	 * Logger for draw
+	 */
+	private static Logger logger = LoggerFactory.getLogger(MapHandler.class);
 	/**
 	 * Frame.
 	 */
@@ -156,7 +159,7 @@ public class Draw {
 		try {
 			g.drawImage(ImageIO.read(this.getClass().getResource("/Images/background.png")), 0, 0, WIDTH, HEIGHT, null);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 		}
 
 		Font font = new Font("century", Font.PLAIN, 64);
@@ -246,7 +249,7 @@ public class Draw {
 			/**
 			 * IOException catching and printing.
 			 */
-			e.printStackTrace();
+			logger.error(e.toString());
 		}
 
 	}
@@ -287,7 +290,7 @@ public class Draw {
 			g.drawString(Game.Instances.food_potion_vendor.dialog, 235, 170);
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 		}
 
 	}
@@ -301,7 +304,7 @@ public class Draw {
 		try {
 			g.drawImage(ImageIO.read(Game.Instances.currentMap.mapImageGround), 0, 0, null);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 		}
 		if (Instances.player.getRight()) {
 			try {
@@ -310,7 +313,7 @@ public class Draw {
 						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
 						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.toString());
 			}
 		} else if (Instances.player.getLeft()) {
 			try {
@@ -319,7 +322,7 @@ public class Draw {
 						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
 						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.toString());
 			}
 		} else if (Instances.player.getUp()) {
 			try {
@@ -328,7 +331,7 @@ public class Draw {
 						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
 						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.toString());
 			}
 		} else if (Instances.player.getDown()) {
 			try {
@@ -337,7 +340,7 @@ public class Draw {
 						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
 						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.toString());
 			}
 		} else
 			try {
@@ -345,12 +348,12 @@ public class Draw {
 						(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
 						(int) Instances.player.getY() + 70, 0, 0, 70, 70, null);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.toString());
 			}
 		try {
 			g.drawImage(ImageIO.read(Game.Instances.currentMap.mapImageObjects), 0, 0, null);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 		}
 
 		if (Instances.player.getInventoryStatus() == true) {
@@ -368,7 +371,7 @@ public class Draw {
 						Game.Instances.food_potion_vendor.x + 70, Game.Instances.food_potion_vendor.y + 70, 0, 0, 75,
 						65, null);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.toString());
 			}
 		}
 

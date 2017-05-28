@@ -1,27 +1,24 @@
 package Game;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.Reader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import Game.MapHandler.Tile;
-import ch.qos.logback.core.net.SyslogOutputStream;
 /**
  * 
  * Saves and loads data.
@@ -30,6 +27,10 @@ import ch.qos.logback.core.net.SyslogOutputStream;
  *
  */
 public class DAO {
+	/**
+	 * Logger of DAO class.
+	 */
+	private static Logger logger = LoggerFactory.getLogger(MapHandler.class);
 
 	/**
 	 * 
@@ -52,7 +53,7 @@ public class DAO {
 			}
 			s.close();
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 		}
 
 		return loaderTileList;
@@ -87,9 +88,9 @@ public class DAO {
 			fileWriter.write(obj.toJSONString());
 			fileWriter.close();
 		} catch (IOException | URISyntaxException e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 		} finally {
-			//System.out.println("saved");
+			
 		}
 
 	}
@@ -103,10 +104,6 @@ public class DAO {
 		try {
 			InputStream input = DAO.class.getClassLoader().getResourceAsStream("GamePlay/asd.json");
 			Reader reader = new InputStreamReader(input);
-			//private static File json = new File(GamePlayDataDAO.class.getClassLoader().getResource("json/json").getPath());
-			//System.out.println(this.getClass().getClassLoader().getResource("").getPath());
-			//Object obj = parser.parse(this.getClass().getClassLoader().getResource("GamePlay/asd.json").getPath());
-
 			Object obj = parser.parse(reader);
 			JSONObject jsonObject = (JSONObject) obj;
 
@@ -130,7 +127,7 @@ public class DAO {
 			}
 
 		} catch (ParseException | IOException e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 		}
 
 	}
@@ -156,7 +153,7 @@ public class DAO {
 			}
 			s.close();
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 		}
 
 		return loaderTileList;
