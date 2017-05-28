@@ -25,10 +25,18 @@ import javax.swing.JPanel;
  *
  */
 public class Draw {
+	/**
+	 * Frame.
+	 */
 	JFrame frame;
+	/**
+	 * Canvas to drive on.
+	 */
 	Canvas canvas;
-	MapHandler currentMap = Game.Instances.Map1;
 
+	/**
+	 * Init bufferStrategy.
+	 */
 	BufferStrategy bufferStrategy;
 
 	/**
@@ -102,15 +110,15 @@ public class Draw {
 				 System.out.println("x = " + e.getX() + "/ y = " + e.getY());
 				if (e.getX() >= 130 && e.getY() > 100 && e.getX() <= 530 && e.getY() <= 155 && Game.menustatus) {
 					Game.menustatus = false;
-					Game.Instances.player = new Player();
+					Instances.player = new Player();
 					Game.Instances.currentMap = Game.Instances.Falucska2;
 				}
 				if (e.getX() >= 130 && e.getY() > 200 && e.getX() <= 540 && e.getY() <= 255 && Game.menustatus) {
-					DAO.saveGamePlay();
+					Instances.dao.saveGamePlay();
 
 				}
 				if (e.getX() >= 130 && e.getY() > 300 && e.getX() <= 550 && e.getY() <= 355 && Game.menustatus) {
-					DAO.loadGamePlay();
+					Instances.dao.loadGamePlay();
 					Game.menustatus = false;
 				}
 				if (e.getX() >= 130 && e.getY() > 400 && e.getX() <= 310 && e.getY() <= 455 && Game.menustatus) {
@@ -121,6 +129,9 @@ public class Draw {
 
 	}
 
+	/**
+	 * Render at start.
+	 */
 	void render() {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
@@ -130,9 +141,17 @@ public class Draw {
 			render_menu(g);
 		}
 		g.dispose();
+		/**
+		 * Show the buffer strategy
+		 */
 		bufferStrategy.show();
 	}
 
+	/**
+	 * Render the menu.
+	 * 
+	 * @param g - Graphics2D g to have something to call the methods
+	 */
 	private void render_menu(Graphics2D g) {
 		try {
 			g.drawImage(ImageIO.read(this.getClass().getResource("/Images/background.png")), 0, 0, WIDTH, HEIGHT, null);
@@ -152,13 +171,20 @@ public class Draw {
 		g.setFont(font);
 		g.setColor(Color.black);
 		g.drawString("LOAD GAME", 140, 350);
-
+		/**
+		 * Exit on clicking exit.
+		 */
 		g.setFont(font);
+		/**
+		 * Setting color of the content you draw in the future.
+		 */
 		g.setColor(Color.black);
 		g.drawString("EXIT", 140, 450);
 
 	}
-
+	/**
+	 * Start rendering the player inventory and stats window.
+	 */
 	void render_init_playerstat() {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
@@ -167,6 +193,11 @@ public class Draw {
 		bufferStrategy.show();
 	}
 
+	/**
+	 * Main render method of drawing the inventory and stats window.
+	 * 
+	 * @param g - Graphics2D g to have something to call the methods
+	 */
 	private void render_playerstat(Graphics2D g) {
 		try {
 			g.drawImage(ImageIO.read(this.getClass().getResource("/Images/background.png")), 0, 0, WIDTH, HEIGHT, null);
@@ -176,58 +207,78 @@ public class Draw {
 			g.setColor(Color.GRAY);
 			g.drawString("Nealder", 150, 130);
 
-			g.drawImage(ImageIO.read(Game.Instances.player.moveDownSprite), 280, 0, 350, 70, 0, 0, 70, 70, null);
+			g.drawImage(ImageIO.read(Instances.player.moveDownSprite), 280, 0, 350, 70, 0, 0, 70, 70, null);
 
 			font = new Font("Serif", Font.PLAIN, 22);
 			g.setFont(font);
 			g.drawString("Life", 50, 190);
 			g.drawString(":", 150, 190);
-			g.drawString(new Integer(Game.Instances.player.getLife()).toString() + " / "
-					+ Game.Instances.player.getCurrentLife(), 165, 192);
+			g.drawString(new Integer(Instances.player.getLife()).toString() + " / "
+					+ Instances.player.getCurrentLife(), 165, 192);
 			g.drawString("Strength", 50, 220);
 			g.drawString(":", 150, 220);
-			g.drawString(new Integer(Game.Instances.player.getStrength()).toString(), 165, 222);
+			g.drawString(new Integer(Instances.player.getStrength()).toString(), 165, 222);
 			g.drawString("Stamina", 50, 250);
 			g.drawString(":", 150, 250);
-			g.drawString(new Integer(Game.Instances.player.getStamina()).toString(), 165, 252);
+			g.drawString(new Integer(Instances.player.getStamina()).toString(), 165, 252);
 			g.drawString("Magic", 50, 280);
 			g.drawString(":", 150, 280);
-			g.drawString(new Integer(Game.Instances.player.getMagic()).toString(), 165, 282);
+			g.drawString(new Integer(Instances.player.getMagic()).toString(), 165, 282);
 
 			g.drawString("Armor", 50, 340);
 			g.drawString(":", 190, 340);
-			g.drawString(new Integer(Game.Instances.player.getMagic()).toString(), 205, 342);
+			g.drawString(new Integer(Instances.player.getMagic()).toString(), 205, 342);
 			g.drawString("Critical chance", 50, 370);
 			g.drawString(":", 190, 370);
-			g.drawString(new Float(Game.Instances.player.getCritical_chance() * 100).toString(), 205, 372);
+			g.drawString(new Float(Instances.player.getCritical_chance() * 100).toString(), 205, 372);
 			g.drawString("%", 260, 372);
 			g.drawString("Critical damage", 50, 400);
 			g.drawString(":", 190, 400);
-			g.drawString(new Float(Game.Instances.player.getCritical_dmg() * 100).toString(), 205, 402);
+			g.drawString(new Float(Instances.player.getCritical_dmg() * 100).toString(), 205, 402);
+			/**
+			 * Draw the Strings as they represents the stats and inventory
+			 */
 			g.drawString("%", 260, 402);
 
 			g.drawImage(ImageIO.read(this.getClass().getResource("/Images/inventory.png")), 50, 450, 387, 159, null);
 
 		} catch (IOException e) {
+			/**
+			 * IOException catching and printing.
+			 */
 			e.printStackTrace();
 		}
 
 	}
 
+	/**
+	 * Startint render of interaction NPC window.
+	 * 
+	 * @param npc - the NPC whose interaction this is
+	 */
 	void render_init_interactionNPC(NPC npc) {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
+		/**
+		 * Rendering the interaction NPC window.
+		 */
 		render_interactionNPC(g, npc);
 		g.dispose();
 		bufferStrategy.show();
 	}
 
+	/**
+	 * Main render method for drawing the interaction with NPC.
+	 * 
+	 * @param g - Graphics2D g to have something to call the methods
+	 * @param npc - the NPC whose interaction this is
+	 */
 	private void render_interactionNPC(Graphics2D g, NPC npc) {
 		try {
 			g.drawImage(ImageIO.read(Game.Instances.currentMap.mapImageGround), 0, 0, null);
-			g.drawImage(ImageIO.read(Game.Instances.player.moveDownSprite), (int) Game.Instances.player.getX(),
-					(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
-					(int) Game.Instances.player.getY() + 70, 0, 0, 70, 70, null);
+			g.drawImage(ImageIO.read(Instances.player.moveDownSprite), (int) Instances.player.getX(),
+					(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+					(int) Instances.player.getY() + 70, 0, 0, 70, 70, null);
 			g.drawImage(ImageIO.read(this.getClass().getResource("/Images/background.png")), 100, 100, 440, 440, null);
 
 			Font font = new Font("Serif", Font.PLAIN, 22);
@@ -241,53 +292,58 @@ public class Draw {
 
 	}
 
+	/**
+	 * Basic Main render method to draw.
+	 * 
+	 * @param g - Graphics2D g to have something to call the methods
+	 */
 	protected void render(Graphics2D g) {
 		try {
 			g.drawImage(ImageIO.read(Game.Instances.currentMap.mapImageGround), 0, 0, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (Game.Instances.player.getRight()) {
+		if (Instances.player.getRight()) {
 			try {
-				g.drawImage(ImageIO.read(Game.Instances.player.moveRightSprite), (int) Game.Instances.player.getX(),
-						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
-						(int) Game.Instances.player.getY() + 70, 0 + dx * Game.Instances.player.sprite_i, 0,
-						dx + dx * Game.Instances.player.sprite_i, 70, null);
+				g.drawImage(ImageIO.read(Instances.player.moveRightSprite), (int) Instances.player.getX(),
+						(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
+						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else if (Game.Instances.player.getLeft()) {
+		} else if (Instances.player.getLeft()) {
 			try {
-				g.drawImage(ImageIO.read(Game.Instances.player.moveLeftSprite), (int) Game.Instances.player.getX(),
-						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
-						(int) Game.Instances.player.getY() + 70, 0 + dx * Game.Instances.player.sprite_i, 0,
-						dx + dx * Game.Instances.player.sprite_i, 70, null);
+				g.drawImage(ImageIO.read(Instances.player.moveLeftSprite), (int) Instances.player.getX(),
+						(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
+						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else if (Game.Instances.player.getUp()) {
+		} else if (Instances.player.getUp()) {
 			try {
-				g.drawImage(ImageIO.read(Game.Instances.player.moveUpSprite), (int) Game.Instances.player.getX(),
-						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
-						(int) Game.Instances.player.getY() + 70, 0 + dx * Game.Instances.player.sprite_i, 0,
-						dx + dx * Game.Instances.player.sprite_i, 70, null);
+				g.drawImage(ImageIO.read(Instances.player.moveUpSprite), (int) Instances.player.getX(),
+						(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
+						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else if (Game.Instances.player.getDown()) {
+		} else if (Instances.player.getDown()) {
 			try {
-				g.drawImage(ImageIO.read(Game.Instances.player.moveDownSprite), (int) Game.Instances.player.getX(),
-						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
-						(int) Game.Instances.player.getY() + 70, 0 + dx * Game.Instances.player.sprite_i, 0,
-						dx + dx * Game.Instances.player.sprite_i, 70, null);
+				g.drawImage(ImageIO.read(Instances.player.moveDownSprite), (int) Instances.player.getX(),
+						(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+						(int) Instances.player.getY() + 70, 0 + dx * Instances.player.sprite_i, 0,
+						dx + dx * Instances.player.sprite_i, 70, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else
 			try {
-				g.drawImage(ImageIO.read(Game.Instances.player.moveDownSprite), (int) Game.Instances.player.getX(),
-						(int) Game.Instances.player.getY(), (int) Game.Instances.player.getX() + 70,
-						(int) Game.Instances.player.getY() + 70, 0, 0, 70, 70, null);
+				g.drawImage(ImageIO.read(Instances.player.moveDownSprite), (int) Instances.player.getX(),
+						(int) Instances.player.getY(), (int) Instances.player.getX() + 70,
+						(int) Instances.player.getY() + 70, 0, 0, 70, 70, null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -297,7 +353,7 @@ public class Draw {
 			e.printStackTrace();
 		}
 
-		if (Game.Instances.player.getInventoryStatus() == true) {
+		if (Instances.player.getInventoryStatus() == true) {
 			render_init_playerstat();
 		}
 		if (Game.Instances.food_potion_vendor.getInteractionStatus() == true) {
@@ -305,7 +361,7 @@ public class Draw {
 		}
 
 		if (Game.Instances.currentMap.mapImageGround.equals(Game.Instances.Falucska2.mapImageGround)
-				&& !Game.Instances.player.getInventoryStatus()) {
+				&& !Instances.player.getInventoryStatus()) {
 			try {
 				g.drawImage(ImageIO.read(Game.Instances.food_potion_vendor.imageNPC),
 						Game.Instances.food_potion_vendor.x, Game.Instances.food_potion_vendor.y,
@@ -316,7 +372,7 @@ public class Draw {
 			}
 		}
 
-		g.setColor(Color.red);
+		/*g.setColor(Color.red);
 		g.drawRect((int) Game.Instances.player.collisionTest.getX(), (int) Game.Instances.player.collisionTest.getY(),
 				(int) Game.Instances.player.collisionTest.getWidth(),
 				(int) Game.Instances.player.collisionTest.getHeight());
@@ -329,7 +385,7 @@ public class Draw {
 		g.setColor(Color.red);
 		for (Rectangle rec : Game.Instances.currentMap.unpassableRectangle) {
 			g.drawRect((int) rec.x, (int) rec.y, (int) rec.getWidth(), (int) rec.getHeight());
-		}
+		}*/
 
 	}
 

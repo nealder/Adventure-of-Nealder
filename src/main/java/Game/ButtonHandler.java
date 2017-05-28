@@ -12,13 +12,15 @@ import java.awt.event.KeyEvent;
 public class ButtonHandler extends KeyAdapter {
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public ButtonHandler() {
 	}
 
 	/**
 	 * Procedure which is called by the parent canvas each time a keyboard input happens.
+	 * 
+	 * @param key - key which was recently pressed
 	 */
 	public void keyPressed(KeyEvent key) {
 		Game.Instances.currentMap.handlePassageWay();
@@ -118,6 +120,8 @@ public class ButtonHandler extends KeyAdapter {
 
 	/**
 	 * Procedure which is called by the parent canvas every time a keyboard input stops happening.
+	 * 
+	 * @param key - key which was recently pressed
 	 */
 	public void keyReleased(KeyEvent key) {
 		switch (key.getKeyCode()) {
@@ -144,6 +148,8 @@ public class ButtonHandler extends KeyAdapter {
 
 	/**
 	 * Currently unused.
+	 * 
+	 * @param key - key which was recently pressed
 	 */
 	public void keyTyped(KeyEvent key) {
 

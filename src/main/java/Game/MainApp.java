@@ -8,6 +8,11 @@ package Game;
  */
 public class MainApp {
 
+	/**
+	 * Obvious main method.
+	 * 
+	 * @param args - the args given at running 
+	 */
 	public static void main(String[] args) {
 		Game beta = new Game();
 		new Thread(beta).start();

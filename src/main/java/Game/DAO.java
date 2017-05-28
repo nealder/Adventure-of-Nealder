@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +21,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import Game.MapHandler.Tile;
+import ch.qos.logback.core.net.SyslogOutputStream;
 /**
  * 
  * Saves and loads data.
@@ -32,12 +38,12 @@ public class DAO {
 	 * @param name - name of the file which contains the tiles
 	 * @return - a list that contains the unpassable tiles
 	 */
-	public static List<Tile> loadUnpassableTiles(String name) {
+	public  List<Tile> loadUnpassableTiles(String name) {
 		List<Tile> loaderTileList = new ArrayList<>();
 
 		String line;
 		try {
-			Scanner s = new Scanner(new File("src/main/resources/Maps/" + "/" + name)); // this.getClass().getResourceAsStream
+			Scanner s = new Scanner(this.getClass().getResourceAsStream("/Maps/" + name)); // this.getClass().getResourceAsStream
 			while (s.hasNext()) {
 				line = (s.next());
 				String[] linearray;
@@ -46,9 +52,6 @@ public class DAO {
 			}
 			s.close();
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -60,28 +63,30 @@ public class DAO {
 	 * Saves the current game, including player position on map and player stats.
 	 */
 	@SuppressWarnings("unchecked")
-	public static void saveGamePlay() {
+	public  void saveGamePlay() {
 		JSONObject obj = new JSONObject();
 		FileWriter fileWriter;
 
-		obj.put("x", Game.Instances.player.getX());
-		obj.put("y", Game.Instances.player.getY());
-		obj.put("name", Game.Instances.player.getName());
-		obj.put("currentLife", Game.Instances.player.getCurrentLife());
-		obj.put("strength", Game.Instances.player.getStrength());
-		obj.put("stamina", Game.Instances.player.getStamina());
-		obj.put("maxlife", Game.Instances.player.getLife());
-		obj.put("magic", Game.Instances.player.getMagic());
-		obj.put("critical chance", Game.Instances.player.getCritical_chance());
-		obj.put("critical damage", Game.Instances.player.getCritical_dmg());
-		obj.put("armor", Game.Instances.player.getArmor());
+		obj.put("x", Instances.player.getX());
+		obj.put("y", Instances.player.getY());
+		obj.put("name", Instances.player.getName());
+		obj.put("currentLife", Instances.player.getCurrentLife());
+		obj.put("strength", Instances.player.getStrength());
+		obj.put("stamina", Instances.player.getStamina());
+		obj.put("maxlife", Instances.player.getLife());
+		obj.put("magic", Instances.player.getMagic());
+		obj.put("critical chance", Instances.player.getCritical_chance());
+		obj.put("critical damage", Instances.player.getCritical_dmg());
+		obj.put("armor", Instances.player.getArmor());
 		obj.put("map", Game.Instances.currentMap.name);
 
 		try {
-			fileWriter = new FileWriter("src/main/resources/GamePlay/asd.json");
+			URL url = DAO.class.getResource("/GamePlay/asd.json");
+			File file = new File(url.toURI());
+			fileWriter = new FileWriter(file);
 			fileWriter.write(obj.toJSONString());
 			fileWriter.close();
-		} catch (IOException e) {
+		} catch (IOException | URISyntaxException e) {
 			e.printStackTrace();
 		} finally {
 			//System.out.println("saved");
@@ -90,28 +95,32 @@ public class DAO {
 	}
 
 	/**
-	 * Loads a saved game.
+	 * Currently not used.Loads a saved game.
 	 */
-	public static void loadGamePlay() {
+	public  void loadGamePlay() {
 		JSONParser parser = new JSONParser();
 
 		try {
+			InputStream input = DAO.class.getClassLoader().getResourceAsStream("GamePlay/asd.json");
+			Reader reader = new InputStreamReader(input);
+			//private static File json = new File(GamePlayDataDAO.class.getClassLoader().getResource("json/json").getPath());
+			//System.out.println(this.getClass().getClassLoader().getResource("").getPath());
+			//Object obj = parser.parse(this.getClass().getClassLoader().getResource("GamePlay/asd.json").getPath());
 
-			Object obj = parser.parse(new FileReader("src/main/resources/GamePlay/asd.json"));
-
+			Object obj = parser.parse(reader);
 			JSONObject jsonObject = (JSONObject) obj;
 
-			Game.Instances.player.setName((String) jsonObject.get("name"));
-			Game.Instances.player.setX((int) (long) (double) jsonObject.get("x"));
-			Game.Instances.player.setY((int) (long) (double) jsonObject.get("y"));
-			Game.Instances.player.setCurrentLife((int) (long) jsonObject.get("currentLife"));
-			Game.Instances.player.setStrength((int) (long) jsonObject.get("strength"));
-			Game.Instances.player.setStamina((int) (long) jsonObject.get("stamina"));
-			Game.Instances.player.setLife((int) (long) jsonObject.get("maxlife"));
-			Game.Instances.player.setMagic((int) (long) jsonObject.get("magic"));
-			Game.Instances.player.setCritical_chance((float) (double) jsonObject.get("critical chance"));
-			Game.Instances.player.setCritical_dmg((float) (double) jsonObject.get("critical damage"));
-			Game.Instances.player.setArmor((int) (long) jsonObject.get("armor"));
+			Instances.player.setName((String) jsonObject.get("name"));
+			Instances.player.setX((int) (long) (double) jsonObject.get("x"));
+			Instances.player.setY((int) (long) (double) jsonObject.get("y"));
+			Instances.player.setCurrentLife((int) (long) jsonObject.get("currentLife"));
+			Instances.player.setStrength((int) (long) jsonObject.get("strength"));
+			Instances.player.setStamina((int) (long) jsonObject.get("stamina"));
+			Instances.player.setLife((int) (long) jsonObject.get("maxlife"));
+			Instances.player.setMagic((int) (long) jsonObject.get("magic"));
+			Instances.player.setCritical_chance((float) (double) jsonObject.get("critical chance"));
+			Instances.player.setCritical_dmg((float) (double) jsonObject.get("critical damage"));
+			Instances.player.setArmor((int) (long) jsonObject.get("armor"));
 			for (MapHandler map : Game.Instances.collectionMap) {
 
 				if (map.name.equals(((String) jsonObject.get("map")))) {
@@ -120,11 +129,7 @@ public class DAO {
 				}
 			}
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
+		} catch (ParseException | IOException e) {
 			e.printStackTrace();
 		}
 

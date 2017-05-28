@@ -71,13 +71,13 @@ public class Player {
 	public URL moveLeftSprite = this.getClass().getResource("/Images/MoveLeftSprite.png");
 
 	/**
-	 * Currently (functionally) unused. Shows how much life point the player
-	 * has.
+	 * Currently (functionally) unused. Shows how much life point the player has.
+	 * 
 	 */
 	public int currentLife;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public Player() {
 		super();
@@ -94,7 +94,7 @@ public class Player {
 	}
 
 	/**
-	 * Contructor
+	 * Contructor.
 	 * 
 	 * @param x
 	 *            - the x coordinate of the player topleft corner
@@ -201,7 +201,7 @@ public class Player {
 	/**
 	 * Sets the players up indicator. 
 	 * 
-	 * @param newUP - to newUp
+	 * @param newUp - to newUp
 	 */
 	public void setUp(boolean newUp) {
 		up = newUp;
@@ -237,7 +237,7 @@ public class Player {
 	/**
 	 * Returns the inventory indicator.
 	 * 
-	 * @return - 
+	 * @return - inventory
 	 */
 	public boolean getInventoryStatus() {
 		return inventory;
@@ -246,7 +246,7 @@ public class Player {
 	/**
 	 * Returns the x coordinate of the player topleft corner.
 	 * 
-	 * @return - 
+	 * @return - x
 	 */
 	public float getX() {
 		return x;
@@ -255,7 +255,7 @@ public class Player {
 	/**
 	 * Returns the y coordinate of the player topleft corner.
 	 * 
-	 * @return - 
+	 * @return - y
 	 */
 	public float getY() {
 		return y;
@@ -264,7 +264,7 @@ public class Player {
 	/**
 	 * Returns the name of the player.
 	 * 
-	 * @return - 
+	 * @return - Name
 	 */
 	public String getName() {
 		return Name;
@@ -302,7 +302,7 @@ public class Player {
 	/**
 	 * Returns current life of the player.
 	 * 
-	 * @return - 
+	 * @return - currentLife
 	 */
 	public int getCurrentLife() {
 		return currentLife;
@@ -320,7 +320,7 @@ public class Player {
 	/**
 	 * Returns the strength of the player.
 	 * 
-	 * @return
+	 * @return - strength
 	 */
 	public int getStrength() {
 		return strength;
@@ -338,7 +338,7 @@ public class Player {
 	/**
 	 * Returns the stamina of the player.
 	 * 
-	 * @return
+	 * @return - stamina
 	 */
 	public int getStamina() {
 		return stamina;
@@ -356,7 +356,7 @@ public class Player {
 	/**
 	 * Returns the life of the player.
 	 * 
-	 * @return
+	 * @return - maxLife
 	 */
 	public int getLife() {
 		return maxLife;
@@ -374,7 +374,7 @@ public class Player {
 	/**
 	 * Returns the magic of the player.
 	 * 
-	 * @return
+	 * @return - magic
 	 */
 	public int getMagic() {
 		return magic;
@@ -392,7 +392,7 @@ public class Player {
 	/**
 	 * Returns the critical chance of the player.
 	 * 
-	 * @return
+	 * @return - critical_chance
 	 */
 	public float getCritical_chance() {
 		return critical_chance;
@@ -401,7 +401,7 @@ public class Player {
 	/**
 	 * Sets the critical chance of the player.
 	 * 
-	 * @param critical chance - to critical chance
+	 * @param critical_chance - to critical chance
 	 */
 	public void setCritical_chance(float critical_chance) {
 		this.critical_chance = critical_chance;
@@ -410,7 +410,7 @@ public class Player {
 	/**
 	 * Returns the critical damage of the player.
 	 * 
-	 * @return
+	 * @return - critical_dmg
 	 */
 	public float getCritical_dmg() {
 		return critical_dmg;
@@ -428,7 +428,7 @@ public class Player {
 	/**
 	 * Returns the armor of the player.
 	 * 
-	 * @return
+	 * @return - armor
 	 */
 	public int getArmor() {
 		return armor;
@@ -446,7 +446,7 @@ public class Player {
 	/**
 	 * Returns the current number of sprite we draw.
 	 * 
-	 * @return
+	 * @return - sprite_i
 	 */
 	public int getSprite_i() {
 		return sprite_i;
@@ -455,7 +455,7 @@ public class Player {
 	/**
 	 * Sets the current number of sprite we draw.
 	 * 
-	 * @param sprite_i
+	 * @param sprite_i - the current number of sprite we draw
 	 */
 	public void setSprite_i(int sprite_i) {
 		this.sprite_i = sprite_i;
@@ -464,7 +464,7 @@ public class Player {
 	/**
 	 * Returns the direction of where we iterate the image of sprites. 1 to: left-right, -1 to: right-left.
 	 * 
-	 * @return
+	 * @return - sprite_k
 	 */
 	public int getSprite_k() {
 		return sprite_k;
@@ -473,7 +473,7 @@ public class Player {
 	/**
 	 * Sets the direction of where we iterate the image of sprites. 1 to: left-right, -1 to: right-left.
 	 * 
-	 * @param sprite_k
+	 * @param sprite_k - the direction of where we iterate the image of sprites
 	 */
 	public void setSprite_k(int sprite_k) {
 		this.sprite_k = sprite_k;
@@ -482,7 +482,7 @@ public class Player {
 	/**
 	 * Returns the number of this template we use to slow down the change of sprites.
 	 * 
-	 * @return
+	 * @return - spriteDelayer
 	 */
 	public int getSpriteDelayer() {
 		return spriteDelayer;
@@ -491,7 +491,7 @@ public class Player {
 	/**
 	 * Sets the number of this template we use to slow down the change of spirtes.
 	 * 
-	 * @param spriteDelayer
+	 * @param spriteDelayer - the number of this template we use to slow down the change of spirtes
 	 */
 	public void setSpriteDelayer(int spriteDelayer) {
 		this.spriteDelayer = spriteDelayer;
@@ -500,7 +500,7 @@ public class Player {
 	/**
 	 * Currently unused. Returns the list of items the player carries with itself;
 	 * 
-	 * @return
+	 * @return - inventoryList
 	 */
 	public List<Item> getInventoryList() {
 		return inventoryList;
@@ -509,7 +509,7 @@ public class Player {
 	/**
 	 * Currently unused. Sets a the list of items the player carries with itself, with another inventoryList.
 	 * 
-	 * @param inventoryList
+	 * @param inventoryList - list of items the player carries with itself
 	 */
 	public void setInventoryList(List<Item> inventoryList) {
 		this.inventoryList = inventoryList;
@@ -518,16 +518,16 @@ public class Player {
 	/**
 	 * Returns the rectangle we use to detect collision with objects.
 	 * 
-	 * @return
+	 * @return - collisionTest
 	 */
 	public Rectangle getCollisionTest() {
 		return collisionTest;
 	}
 
 	/**
-	 * Sets the rectanglewe use to detect collision with objects.
+	 * Sets the rectangle we use to detect collision with objects.
 	 * 
-	 * @param collisionTest - collisionTest
+	 * @param collisionTest - the rectangle we use to detect collision with objects
 	 */
 	public void setCollisionTest(Rectangle collisionTest) {
 		this.collisionTest = collisionTest;
@@ -536,7 +536,7 @@ public class Player {
 	/**
 	 * Returns the location of where the right movement sprites can be found.
 	 * 
-	 * @return
+	 * @return - moveRightSprite
 	 */
 	public URL getMoveRightSprite() {
 		return moveRightSprite;
@@ -545,7 +545,7 @@ public class Player {
 	/**
 	 * Sets the variable to the location the where right movement sprites can be found.
 	 * 
-	 * @param moveLeftSprite
+	 * @param moveRightSprite - the variable to the location the where right movement sprites can be found
 	 */
 	public void setMoveRightSprite(URL moveRightSprite) {
 		this.moveRightSprite = moveRightSprite;
@@ -554,7 +554,7 @@ public class Player {
 	/**
 	 * Returns the location of where the up movement sprites can be found.
 	 * 
-	 * @return
+	 * @return - moveUpSprite
 	 */
 	public URL getMoveUpSprite() {
 		return moveUpSprite;
@@ -563,7 +563,7 @@ public class Player {
 	/**
 	 * Sets the variable to the location where the up movement sprites can be found.
 	 * 
-	 * @param moveLeftSprite
+	 * @param moveUpSprite - the variable to the location where the up movement sprites can be found
 	 */
 	public void setMoveUpSprite(URL moveUpSprite) {
 		this.moveUpSprite = moveUpSprite;
@@ -572,7 +572,7 @@ public class Player {
 	/**
 	 * Returns the location of where the down movement sprites can be found.
 	 * 
-	 * @return
+	 * @return - moveDownSprite
 	 */
 	public URL getMoveDownSprite() {
 		return moveDownSprite;
@@ -581,7 +581,7 @@ public class Player {
 	/**
 	 * Sets the variable to the location where the down movement sprites can be found.
 	 * 
-	 * @param moveLeftSprite
+	 * @param moveDownSprite - the variable to the location where the down movement sprites can be found
 	 */
 	public void setMoveDownSprite(URL moveDownSprite) {
 		this.moveDownSprite = moveDownSprite;
@@ -590,7 +590,7 @@ public class Player {
 	/**
 	 * Returns the location of where the left movement sprites can be found.
 	 * 
-	 * @return
+	 * @return - moveLeftSprite
 	 */
 	public URL getMoveLeftSprite() {
 		return moveLeftSprite;
@@ -599,7 +599,7 @@ public class Player {
 	/**
 	 * Sets the variable to the location where the left movement sprites can be found.
 	 * 
-	 * @param moveLeftSprite
+	 * @param moveLeftSprite - the variable to the location where the left movement sprites can be found
 	 */
 	public void setMoveLeftSprite(URL moveLeftSprite) {
 		this.moveLeftSprite = moveLeftSprite;
@@ -608,7 +608,7 @@ public class Player {
 	/**
 	 * Returns the macimum life the player.
 	 * 
-	 * @return
+	 * @return - maxLife
 	 */
 	public int getMaxLife() {
 		return maxLife;
@@ -626,7 +626,7 @@ public class Player {
 	/**
 	 * Returns the left indicator of movement.
 	 * 
-	 * @return
+	 * @return - left
 	 */
 	public boolean isLeft() {
 		return left;
@@ -635,7 +635,7 @@ public class Player {
 	/**
 	 * Returns the right indicator of movement.
 	 * 
-	 * @return
+	 * @return - right
 	 */
 	public boolean isRight() {
 		return right;
@@ -644,7 +644,7 @@ public class Player {
 	/**
 	 * Returns the up indicator of movement.
 	 * 
-	 * @return
+	 * @return - up
 	 */
 	public boolean isUp() {
 		return up;
@@ -653,16 +653,16 @@ public class Player {
 	/**
 	 * Returns the down indicator of movement.
 	 * 
-	 * @return
+	 * @return - down
 	 */
 	public boolean isDown() {
 		return down;
 	}
 
 	/**
-	 * Returns the indicator of the inventory&stat window.
+	 * Returns the indicator of the inventory and stat window.
 	 * 
-	 * @return
+	 * @return - inventory
 	 */
 	public boolean isInventory() {
 		return inventory;
@@ -671,7 +671,7 @@ public class Player {
 	/**
 	 * Returns the left indicator of movement.
 	 * 
-	 * @return
+	 * @return - left
 	 */
 	public boolean getLeft() {
 		return this.left;
@@ -680,7 +680,7 @@ public class Player {
 	/**
 	 * Returns the up indicator of movement.
 	 * 
-	 * @return
+	 * @return - up
 	 */
 	public boolean getUp() {
 		return this.up;
@@ -689,7 +689,7 @@ public class Player {
 	/**
 	 * Returns the down indicator of movement.
 	 * 
-	 * @return
+	 * @return - down
 	 */
 	public boolean getDown() {
 		return this.down;
@@ -698,7 +698,7 @@ public class Player {
 	/**
 	 * Returns the right indicator of movement.
 	 * 
-	 * @return
+	 * @return - right
 	 */
 	public boolean getRight() {
 		return this.right;

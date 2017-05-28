@@ -49,7 +49,7 @@ public class NPC {
 	public String dialog;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
 	 * @param x - the x coordinate of the NPC's topleft corner.
 	 * @param y - the y coordinate of the NPC's topleft corner.
@@ -81,7 +81,7 @@ public class NPC {
 	/**
 	 * Returns the indicator of the interaction.
 	 * 
-	 * @return
+	 * @return - interactionStatus
 	 */
 	public boolean getInteractionStatus() {
 		return interactionStatus;
@@ -90,7 +90,7 @@ public class NPC {
 	/**
 	 * Returns the x coordinate of the NPC's topleft corner.
 	 * 
-	 * @return
+	 * @return - x
 	 */
 	public int getX() {
 		return x;
@@ -108,7 +108,7 @@ public class NPC {
 	/**
 	 * Returns the y coordinate of the NPC's topleft corner.
 	 *  
-	 * @return
+	 * @return - y
 	 */
 	public int getY() {
 		return y;
@@ -126,7 +126,7 @@ public class NPC {
 	/**
 	 * Returns the width , within the player can have interaction with the NPC.
 	 * 
-	 * @return
+	 * @return - width
 	 */
 	public int getWidth() {
 		return width;
@@ -142,9 +142,9 @@ public class NPC {
 	}
 
 	/**
-	 * Returns the height , within the player can have interaction with the NPC:
+	 * Returns the height , within the player can have interaction with the NPC.
 	 * 
-	 * @return
+	 * @return - height
 	 */
 	public int getHeight() {
 		return height;
@@ -162,7 +162,7 @@ public class NPC {
 	/**
 	 * Returns the locations where the image of the NPC is stored.
 	 * 
-	 * @return
+	 * @return - imageNPC
 	 */
 	public URL getImageNPC() {
 		return imageNPC;
@@ -180,7 +180,7 @@ public class NPC {
 	/**
 	 * Returns the rectangle that defines the area where the player can interact with the NPC.
 	 * 
-	 * @return
+	 * @return - interactionRectangle
 	 */
 	public Rectangle getInteractionRectangle() {
 		return interactionRectangle;
@@ -189,7 +189,7 @@ public class NPC {
 	/**
 	 * Sets the rectangle that defines the area where the player can interact with the NPC.
 	 * 
-	 * @param interactionRectangle
+	 * @param interactionRectangle - Rectangle of interaction
 	 */
 	public void setInteractionRectangle(Rectangle interactionRectangle) {
 		this.interactionRectangle = interactionRectangle;
@@ -198,7 +198,7 @@ public class NPC {
 	/**
 	 * Returns the name of the NPC.
 	 * 
-	 * @return
+	 * @return - name 
 	 */
 	public String getName() {
 		return name;
@@ -207,7 +207,7 @@ public class NPC {
 	/**
 	 * Sets the name of the NPC.
 	 * 
-	 * @param name
+	 * @param name - Name of the NPC
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -216,7 +216,7 @@ public class NPC {
 	/**
 	 * Sets the interaction indicator.
 	 * 
-	 * @param interactionStatus
+	 * @param interactionStatus - Indicator of interaction
 	 */
 	public void setInteractionStatus(boolean interactionStatus) {
 		this.interactionStatus = interactionStatus;

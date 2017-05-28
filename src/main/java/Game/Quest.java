@@ -54,7 +54,7 @@ public class Quest {
 		/**
 		 * Returns the indicator of activation.
 		 * 
-		 * @return
+		 * @return - the indicator of activation
 		 */
 		public boolean isActive() {
 			return active;
@@ -63,7 +63,7 @@ public class Quest {
 		/**
 		 * Sets the indicator of activation of the quest.
 		 * 
-		 * @param active
+		 * @param active - the indicator of activation of the quest
 		 */
 		public void setActive(boolean active) {
 			this.active = active;
@@ -72,7 +72,7 @@ public class Quest {
 		/**
 		 * Returns the indicator of complettion.
 		 * 
-		 * @return
+		 * @return - the indicator of complettion
 		 */
 		public boolean isCompletted() {
 			return completted;
@@ -81,7 +81,7 @@ public class Quest {
 		/**
 		 * Sets the indicator of complettion of the quest.
 		 * 
-		 * @param completted
+		 * @param completted - the indicator of complettion of the quest
 		 */
 		public void setCompletted(boolean completted) {
 			this.completted = completted;
@@ -92,7 +92,7 @@ public class Quest {
 	/**
 	 * Returns the owner NPC of the quest.
 	 * 
-	 * @return
+	 * @return - the owner NPC of the quest
 	 */
 	public NPC getNpc() {
 		return npc;
@@ -101,7 +101,7 @@ public class Quest {
 	/**
 	 * Sets the owner NPC of the quest.
 	 * 
-	 * @param npc
+	 * @param npc - the owner NPC of the quest
 	 */
 	public void setNpc(NPC npc) {
 		this.npc = npc;
@@ -110,7 +110,7 @@ public class Quest {
 	/**
 	 * Returns the description of the quest.
 	 * 
-	 * @return
+	 * @return - the description of the quest
 	 */
 	public String getDescription() {
 		return Description;
@@ -119,7 +119,7 @@ public class Quest {
 	/**
 	 * Sets the description of the quest.
 	 * 
-	 * @param description
+	 * @param description - the description of the quest
 	 */
 	public void setDescription(String description) {
 		Description = description;
@@ -128,7 +128,7 @@ public class Quest {
 	/**
 	 * Return the indicator of complettion.
 	 * 
-	 * @return
+	 * @return - the indicator of complettion
 	 */
 	public boolean isCompletedStatus() {
 		return completedStatus;
@@ -137,14 +137,16 @@ public class Quest {
 	/**
 	 * Sets the indicator of complettion.
 	 * 
-	 * @param completedStatus
+	 * @param completedStatus - the indicator of complettion
 	 */
 	public void setCompletedStatus(boolean completedStatus) {
 		this.completedStatus = completedStatus;
 	}
 
 	/**
-	 * Returns the task of the quest
+	 * Returns the task of the quest.
+	 * 
+	 * @return - the task of the quest
 	 */
 	public Task getTask() {
 		return task;
