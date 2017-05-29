@@ -31,7 +31,7 @@ import Model.Player;
  */
 public class Draw {
 	/**
-	 * Logger for draw
+	 * Logger for draw.
 	 */
 	private static Logger logger = LoggerFactory.getLogger(MapHandler.class);
 	/**
@@ -116,7 +116,7 @@ public class Draw {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				 System.out.println("x = " + e.getX() + "/ y = " + e.getY());
+				//System.out.println("x = " + e.getX() + "/ y = " + e.getY());
 				if (e.getX() >= 130 && e.getY() > 100 && e.getX() <= 530 && e.getY() <= 155 && Game.isMenustatus()) {
 					Game.setMenustatus(false);
 					Instances.player = new Player();
@@ -159,7 +159,8 @@ public class Draw {
 	/**
 	 * Render the menu.
 	 * 
-	 * @param g - Graphics2D g to have something to call the methods
+	 * @param g
+	 *            - Graphics2D g to have something to call the methods
 	 */
 	private void render_menu(Graphics2D g) {
 		try {
@@ -191,6 +192,7 @@ public class Draw {
 		g.drawString("EXIT", 140, 450);
 
 	}
+
 	/**
 	 * Start rendering the player inventory and stats window.
 	 */
@@ -205,7 +207,8 @@ public class Draw {
 	/**
 	 * Main render method of drawing the inventory and stats window.
 	 * 
-	 * @param g - Graphics2D g to have something to call the methods
+	 * @param g
+	 *            - Graphics2D g to have something to call the methods
 	 */
 	private void render_playerstat(Graphics2D g) {
 		try {
@@ -222,8 +225,8 @@ public class Draw {
 			g.setFont(font);
 			g.drawString("Life", 50, 190);
 			g.drawString(":", 150, 190);
-			g.drawString(new Integer(Instances.player.getLife()).toString() + " / "
-					+ Instances.player.getCurrentLife(), 165, 192);
+			g.drawString(new Integer(Instances.player.getLife()).toString() + " / " + Instances.player.getCurrentLife(),
+					165, 192);
 			g.drawString("Strength", 50, 220);
 			g.drawString(":", 150, 220);
 			g.drawString(new Integer(Instances.player.getStrength()).toString(), 165, 222);
@@ -263,7 +266,8 @@ public class Draw {
 	/**
 	 * Startint render of interaction NPC window.
 	 * 
-	 * @param npc - the NPC whose interaction this is
+	 * @param npc
+	 *            - the NPC whose interaction this is
 	 */
 	void render_init_interactionNPC(NPC npc) {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
@@ -279,8 +283,10 @@ public class Draw {
 	/**
 	 * Main render method for drawing the interaction with NPC.
 	 * 
-	 * @param g - Graphics2D g to have something to call the methods
-	 * @param npc - the NPC whose interaction this is
+	 * @param g
+	 *            - Graphics2D g to have something to call the methods
+	 * @param npc
+	 *            - the NPC whose interaction this is
 	 */
 	private void render_interactionNPC(Graphics2D g, NPC npc) {
 		try {
@@ -294,7 +300,7 @@ public class Draw {
 			g.setFont(font);
 			g.setColor(Color.BLACK);
 			g.drawString(Game.Instances.food_potion_vendor.dialog, 235, 170);
-			
+
 		} catch (IOException e) {
 			logger.error(e.toString());
 		}
@@ -304,7 +310,8 @@ public class Draw {
 	/**
 	 * Basic Main render method to draw.
 	 * 
-	 * @param g - Graphics2D g to have something to call the methods
+	 * @param g
+	 *            - Graphics2D g to have something to call the methods
 	 */
 	protected void render(Graphics2D g) {
 		try {
@@ -381,20 +388,23 @@ public class Draw {
 			}
 		}
 
-		/*g.setColor(Color.red);
-		g.drawRect((int) Game.Instances.player.collisionTest.getX(), (int) Game.Instances.player.collisionTest.getY(),
-				(int) Game.Instances.player.collisionTest.getWidth(),
-				(int) Game.Instances.player.collisionTest.getHeight());
-		if (Game.Instances.currentMap == Game.Instances.Falucska2) {
-			g.setColor(Color.blue);
-			g.drawRect(Game.Instances.food_potion_vendor.x, Game.Instances.food_potion_vendor.y,
-					Game.Instances.food_potion_vendor.width, Game.Instances.food_potion_vendor.height);
-		}
-
-		g.setColor(Color.red);
-		for (Rectangle rec : Game.Instances.currentMap.unpassableRectangle) {
-			g.drawRect((int) rec.x, (int) rec.y, (int) rec.getWidth(), (int) rec.getHeight());
-		}*/
+		/*
+		 * g.setColor(Color.red); g.drawRect((int)
+		 * Game.Instances.player.collisionTest.getX(), (int)
+		 * Game.Instances.player.collisionTest.getY(), (int)
+		 * Game.Instances.player.collisionTest.getWidth(), (int)
+		 * Game.Instances.player.collisionTest.getHeight()); if
+		 * (Game.Instances.currentMap == Game.Instances.Falucska2) {
+		 * g.setColor(Color.blue);
+		 * g.drawRect(Game.Instances.food_potion_vendor.x,
+		 * Game.Instances.food_potion_vendor.y,
+		 * Game.Instances.food_potion_vendor.width,
+		 * Game.Instances.food_potion_vendor.height); }
+		 * 
+		 * g.setColor(Color.red); for (Rectangle rec :
+		 * Game.Instances.currentMap.unpassableRectangle) { g.drawRect((int)
+		 * rec.x, (int) rec.y, (int) rec.getWidth(), (int) rec.getHeight()); }
+		 */
 
 	}
 

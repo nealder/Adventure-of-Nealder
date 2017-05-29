@@ -1,7 +1,8 @@
 package Model;
 
 /**
- * Currently unused. The class which in we handle game quests, which the player can complete.
+ * Currently unused. The class which in we handle game quests, which the player
+ * can complete.
  * 
  * @author Bencs Dániel
  *
@@ -17,7 +18,8 @@ public class Quest {
 	 */
 	public String Description;
 	/**
-	 * The status that show the player that the quest is completed or still active.
+	 * The status that show the player that the quest is completed or still
+	 * active.
 	 */
 	public boolean completedStatus;
 	/**
@@ -45,7 +47,8 @@ public class Quest {
 		/**
 		 * Currently unused. Constructor. Map based Constructor.
 		 * 
-		 * @param map - map which is menat to be a goal of a task.
+		 * @param map
+		 *            - map which is menat to be a goal of a task.
 		 */
 		public Task(MapHandler map) {
 
@@ -63,7 +66,8 @@ public class Quest {
 		/**
 		 * Sets the indicator of activation of the quest.
 		 * 
-		 * @param active - the indicator of activation of the quest
+		 * @param active
+		 *            - the indicator of activation of the quest
 		 */
 		public void setActive(boolean active) {
 			this.active = active;
@@ -81,7 +85,8 @@ public class Quest {
 		/**
 		 * Sets the indicator of complettion of the quest.
 		 * 
-		 * @param completted - the indicator of complettion of the quest
+		 * @param completted
+		 *            - the indicator of complettion of the quest
 		 */
 		public void setCompletted(boolean completted) {
 			this.completted = completted;
@@ -101,7 +106,8 @@ public class Quest {
 	/**
 	 * Sets the owner NPC of the quest.
 	 * 
-	 * @param npc - the owner NPC of the quest
+	 * @param npc
+	 *            - the owner NPC of the quest
 	 */
 	public void setNpc(NPC npc) {
 		this.npc = npc;
@@ -119,7 +125,8 @@ public class Quest {
 	/**
 	 * Sets the description of the quest.
 	 * 
-	 * @param description - the description of the quest
+	 * @param description
+	 *            - the description of the quest
 	 */
 	public void setDescription(String description) {
 		Description = description;
@@ -137,7 +144,8 @@ public class Quest {
 	/**
 	 * Sets the indicator of complettion.
 	 * 
-	 * @param completedStatus - the indicator of complettion
+	 * @param completedStatus
+	 *            - the indicator of complettion
 	 */
 	public void setCompletedStatus(boolean completedStatus) {
 		this.completedStatus = completedStatus;
@@ -155,7 +163,8 @@ public class Quest {
 	/**
 	 * Sets the task of the quest.
 	 * 
-	 * @param task - to task
+	 * @param task
+	 *            - to task
 	 */
 	public void setTask(Task task) {
 		this.task = task;

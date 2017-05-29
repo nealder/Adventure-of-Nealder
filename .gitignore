@@ -48,6 +48,12 @@ local.properties
 # Code Recommenders
 .recommenders/
 
+#TileEditor
+src/main/resources/TileEditor
+
+#JSON
+src/main/resources/GamePlay
+
 # Scala IDE specific (Scala & Java development for Eclipse)
 .cache-main
 .scala_dependencies

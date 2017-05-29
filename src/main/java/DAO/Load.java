@@ -3,7 +3,7 @@ package DAO;
 import View.Game;
 
 /**
- * A class we use to load things in which reguire control.
+ * Currently unused. A class we use to load things in which reguire control.
  * 
  * @author Nealder
  *

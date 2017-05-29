@@ -71,7 +71,8 @@ public class Player {
 	public URL moveLeftSprite = this.getClass().getResource("/Images/MoveLeftSprite.png");
 
 	/**
-	 * Currently (functionally) unused. Shows how much life point the player has.
+	 * Currently (functionally) unused. Shows how much life point the player
+	 * has.
 	 * 
 	 */
 	public int currentLife;
@@ -172,54 +173,58 @@ public class Player {
 	 */
 	public void update() {
 		if (left) {
-			x -= 5;
-			collisionTest.x -= 5;
+			x -= 1;
+			collisionTest.x -= 1;
 		}
 		if (right) {
-			x += 5;
-			collisionTest.x += 5;
+			x += 1;
+			collisionTest.x += 1;
 		}
 		if (up) {
-			y -= 5;
-			collisionTest.y -= 5;
+			y -= 1;
+			collisionTest.y -= 1;
 		}
 		if (down) {
-			y += 5;
-			collisionTest.y += 5;
+			y += 1;
+			collisionTest.y += 1;
 		}
 	}
 
 	/**
-	 * Sets the players left indicator. 
+	 * Sets the players left indicator.
 	 * 
-	 * @param newLeft - to newLeft
+	 * @param newLeft
+	 *            - to newLeft
 	 */
 	public void setLeft(boolean newLeft) {
 		left = newLeft;
 	}
 
 	/**
-	 * Sets the players up indicator. 
+	 * Sets the players up indicator.
 	 * 
-	 * @param newUp - to newUp
+	 * @param newUp
+	 *            - to newUp
 	 */
 	public void setUp(boolean newUp) {
 		up = newUp;
 	}
 
 	/**
-	 * Sets the players down indicator. 
+	 * Sets the players down indicator.
 	 * 
-	 * @param newDown - to newDown
+	 * @param newDown
+	 *            - to newDown
 	 */
 	public void setDown(boolean newDown) {
 		down = newDown;
 	}
 
 	/**
-	 * Sets the players right indicator. 
+	 * Sets the players right indicator.
 	 * 
-	 * @param newRight - to newRight
+	 * @param newRight
+	 *            - to newRight
 	 */
 	public void setRight(boolean newRight) {
 		right = newRight;
@@ -228,7 +233,8 @@ public class Player {
 	/**
 	 * Sets the players inventory indicator.
 	 * 
-	 * @param newInventory - to newInventory
+	 * @param newInventory
+	 *            - to newInventory
 	 */
 	public void setInventory(boolean newInventory) {
 		inventory = newInventory;
@@ -273,7 +279,8 @@ public class Player {
 	/**
 	 * Moves the player topleft corner x coordinate.
 	 * 
-	 * @param x - to x
+	 * @param x
+	 *            - to x
 	 */
 	public void setX(int x) {
 		this.x = x;
@@ -283,7 +290,8 @@ public class Player {
 	/**
 	 * Moves the player topleft corner y coordinate.
 	 * 
-	 * @param y - to y
+	 * @param y
+	 *            - to y
 	 */
 	public void setY(int y) {
 		this.y = y;
@@ -293,7 +301,8 @@ public class Player {
 	/**
 	 * Sets the name of the player.
 	 * 
-	 * @param Name - to Name
+	 * @param Name
+	 *            - to Name
 	 */
 	public void setName(String Name) {
 		this.Name = Name;
@@ -311,7 +320,8 @@ public class Player {
 	/**
 	 * Sets the current life points of the player.
 	 * 
-	 * @param currentLife - to currentLife
+	 * @param currentLife
+	 *            - to currentLife
 	 */
 	public void setCurrentLife(int currentLife) {
 		this.currentLife = currentLife;
@@ -329,7 +339,8 @@ public class Player {
 	/**
 	 * Sets the strength of the player.
 	 * 
-	 * @param strenght - to strength
+	 * @param strenght
+	 *            - to strength
 	 */
 	public void setStrength(int strenght) {
 		this.strength = strenght;
@@ -347,7 +358,8 @@ public class Player {
 	/**
 	 * Sets the stamina of the player.
 	 * 
-	 * @param stamina - to stamina
+	 * @param stamina
+	 *            - to stamina
 	 */
 	public void setStamina(int stamina) {
 		this.stamina = stamina;
@@ -365,7 +377,8 @@ public class Player {
 	/**
 	 * Sets the life of the player.
 	 * 
-	 * @param life - to life
+	 * @param life
+	 *            - to life
 	 */
 	public void setLife(int life) {
 		this.maxLife = life;
@@ -383,7 +396,8 @@ public class Player {
 	/**
 	 * Sets the magic of the player.
 	 * 
-	 * @param magic - to magic
+	 * @param magic
+	 *            - to magic
 	 */
 	public void setMagic(int magic) {
 		this.magic = magic;
@@ -401,7 +415,8 @@ public class Player {
 	/**
 	 * Sets the critical chance of the player.
 	 * 
-	 * @param critical_chance - to critical chance
+	 * @param critical_chance
+	 *            - to critical chance
 	 */
 	public void setCritical_chance(float critical_chance) {
 		this.critical_chance = critical_chance;
@@ -419,7 +434,8 @@ public class Player {
 	/**
 	 * Sets the critical damage of the player.
 	 * 
-	 * @param critical_dmg - to critical_dmg
+	 * @param critical_dmg
+	 *            - to critical_dmg
 	 */
 	public void setCritical_dmg(float critical_dmg) {
 		this.critical_dmg = critical_dmg;
@@ -437,7 +453,8 @@ public class Player {
 	/**
 	 * Sets the armor of the player.
 	 * 
-	 * @param armor - to armor
+	 * @param armor
+	 *            - to armor
 	 */
 	public void setArmor(int armor) {
 		this.armor = armor;
@@ -455,14 +472,16 @@ public class Player {
 	/**
 	 * Sets the current number of sprite we draw.
 	 * 
-	 * @param sprite_i - the current number of sprite we draw
+	 * @param sprite_i
+	 *            - the current number of sprite we draw
 	 */
 	public void setSprite_i(int sprite_i) {
 		this.sprite_i = sprite_i;
 	}
 
 	/**
-	 * Returns the direction of where we iterate the image of sprites. 1 to: left-right, -1 to: right-left.
+	 * Returns the direction of where we iterate the image of sprites. 1 to:
+	 * left-right, -1 to: right-left.
 	 * 
 	 * @return - sprite_k
 	 */
@@ -471,16 +490,19 @@ public class Player {
 	}
 
 	/**
-	 * Sets the direction of where we iterate the image of sprites. 1 to: left-right, -1 to: right-left.
+	 * Sets the direction of where we iterate the image of sprites. 1 to:
+	 * left-right, -1 to: right-left.
 	 * 
-	 * @param sprite_k - the direction of where we iterate the image of sprites
+	 * @param sprite_k
+	 *            - the direction of where we iterate the image of sprites
 	 */
 	public void setSprite_k(int sprite_k) {
 		this.sprite_k = sprite_k;
 	}
 
 	/**
-	 * Returns the number of this template we use to slow down the change of sprites.
+	 * Returns the number of this template we use to slow down the change of
+	 * sprites.
 	 * 
 	 * @return - spriteDelayer
 	 */
@@ -489,16 +511,20 @@ public class Player {
 	}
 
 	/**
-	 * Sets the number of this template we use to slow down the change of spirtes.
+	 * Sets the number of this template we use to slow down the change of
+	 * spirtes.
 	 * 
-	 * @param spriteDelayer - the number of this template we use to slow down the change of spirtes
+	 * @param spriteDelayer
+	 *            - the number of this template we use to slow down the change
+	 *            of spirtes
 	 */
 	public void setSpriteDelayer(int spriteDelayer) {
 		this.spriteDelayer = spriteDelayer;
 	}
 
 	/**
-	 * Currently unused. Returns the list of items the player carries with itself;
+	 * Currently unused. Returns the list of items the player carries with
+	 * itself;
 	 * 
 	 * @return - inventoryList
 	 */
@@ -507,9 +533,11 @@ public class Player {
 	}
 
 	/**
-	 * Currently unused. Sets a the list of items the player carries with itself, with another inventoryList.
+	 * Currently unused. Sets a the list of items the player carries with
+	 * itself, with another inventoryList.
 	 * 
-	 * @param inventoryList - list of items the player carries with itself
+	 * @param inventoryList
+	 *            - list of items the player carries with itself
 	 */
 	public void setInventoryList(List<Item> inventoryList) {
 		this.inventoryList = inventoryList;
@@ -527,7 +555,8 @@ public class Player {
 	/**
 	 * Sets the rectangle we use to detect collision with objects.
 	 * 
-	 * @param collisionTest - the rectangle we use to detect collision with objects
+	 * @param collisionTest
+	 *            - the rectangle we use to detect collision with objects
 	 */
 	public void setCollisionTest(Rectangle collisionTest) {
 		this.collisionTest = collisionTest;
@@ -543,9 +572,12 @@ public class Player {
 	}
 
 	/**
-	 * Sets the variable to the location the where right movement sprites can be found.
+	 * Sets the variable to the location the where right movement sprites can be
+	 * found.
 	 * 
-	 * @param moveRightSprite - the variable to the location the where right movement sprites can be found
+	 * @param moveRightSprite
+	 *            - the variable to the location the where right movement
+	 *            sprites can be found
 	 */
 	public void setMoveRightSprite(URL moveRightSprite) {
 		this.moveRightSprite = moveRightSprite;
@@ -561,9 +593,12 @@ public class Player {
 	}
 
 	/**
-	 * Sets the variable to the location where the up movement sprites can be found.
+	 * Sets the variable to the location where the up movement sprites can be
+	 * found.
 	 * 
-	 * @param moveUpSprite - the variable to the location where the up movement sprites can be found
+	 * @param moveUpSprite
+	 *            - the variable to the location where the up movement sprites
+	 *            can be found
 	 */
 	public void setMoveUpSprite(URL moveUpSprite) {
 		this.moveUpSprite = moveUpSprite;
@@ -579,9 +614,12 @@ public class Player {
 	}
 
 	/**
-	 * Sets the variable to the location where the down movement sprites can be found.
+	 * Sets the variable to the location where the down movement sprites can be
+	 * found.
 	 * 
-	 * @param moveDownSprite - the variable to the location where the down movement sprites can be found
+	 * @param moveDownSprite
+	 *            - the variable to the location where the down movement sprites
+	 *            can be found
 	 */
 	public void setMoveDownSprite(URL moveDownSprite) {
 		this.moveDownSprite = moveDownSprite;
@@ -597,9 +635,12 @@ public class Player {
 	}
 
 	/**
-	 * Sets the variable to the location where the left movement sprites can be found.
+	 * Sets the variable to the location where the left movement sprites can be
+	 * found.
 	 * 
-	 * @param moveLeftSprite - the variable to the location where the left movement sprites can be found
+	 * @param moveLeftSprite
+	 *            - the variable to the location where the left movement sprites
+	 *            can be found
 	 */
 	public void setMoveLeftSprite(URL moveLeftSprite) {
 		this.moveLeftSprite = moveLeftSprite;
@@ -617,7 +658,8 @@ public class Player {
 	/**
 	 * Sets the maximum life of the player.
 	 * 
-	 * @param maxLife - to maxLife
+	 * @param maxLife
+	 *            - to maxLife
 	 */
 	public void setMaxLife(int maxLife) {
 		this.maxLife = maxLife;

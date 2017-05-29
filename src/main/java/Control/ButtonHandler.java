@@ -21,12 +21,14 @@ public class ButtonHandler extends KeyAdapter {
 	}
 
 	/**
-	 * Procedure which is called by the parent canvas each time a keyboard input happens.
+	 * Procedure which is called by the parent canvas each time a keyboard input
+	 * happens.
 	 * 
-	 * @param key - key which was recently pressed
+	 * @param key
+	 *            - key which was recently pressed
 	 */
 	public void keyPressed(KeyEvent key) {
-		Game.Instances.currentMap.handlePassageWay();
+		TileInteraction.handlePassageWay();
 
 		switch (key.getKeyCode()) {
 		case KeyEvent.VK_UP:
@@ -34,40 +36,40 @@ public class ButtonHandler extends KeyAdapter {
 			Instances.player.setDown(false);
 			Instances.player.setLeft(false);
 			Instances.player.setRight(false);
-			if (Instances.player.getInventoryStatus()) {
+			if (Instances.player.getInventoryStatus() || Game.isMenustatus()) {
 				break;
 			}
-			Game.Instances.currentMap.collisionTestUp();
+			TileInteraction.collisionTestUp();
 			break;
 		case KeyEvent.VK_DOWN:
 			Instances.player.setUp(false);
 			Instances.player.setDown(false);
 			Instances.player.setLeft(false);
 			Instances.player.setRight(false);
-			if (Instances.player.getInventoryStatus()) {
+			if (Instances.player.getInventoryStatus() || Game.isMenustatus()) {
 				break;
 			}
-			Game.Instances.currentMap.collisionTestDown();
+			TileInteraction.collisionTestDown();
 			break;
 		case KeyEvent.VK_LEFT:
 			Instances.player.setUp(false);
 			Instances.player.setDown(false);
 			Instances.player.setLeft(false);
 			Instances.player.setRight(false);
-			if (Instances.player.getInventoryStatus()) {
+			if (Instances.player.getInventoryStatus() || Game.isMenustatus()) {
 				break;
 			}
-			Game.Instances.currentMap.collisionTestLeft();
+			TileInteraction.collisionTestLeft();
 			break;
 		case KeyEvent.VK_RIGHT:
 			Instances.player.setUp(false);
 			Instances.player.setDown(false);
 			Instances.player.setLeft(false);
 			Instances.player.setRight(false);
-			if (Instances.player.getInventoryStatus()) {
+			if (Instances.player.getInventoryStatus() || Game.isMenustatus()) {
 				break;
 			}
-			Game.Instances.currentMap.collisionTestRight();
+			TileInteraction.collisionTestRight();
 			break;
 		case KeyEvent.VK_I:
 			Instances.player.setUp(false);
@@ -77,10 +79,10 @@ public class ButtonHandler extends KeyAdapter {
 			if (!Instances.player.getInventoryStatus()) {
 				Instances.player.setInventory(true);
 				Game.Instances.food_potion_vendor.setInteractionStatus(false);
-				//System.out.println(" Pressed I to show the inventory!");
+				// System.out.println(" Pressed I to show the inventory!");
 			} else {
 				Instances.player.setInventory(false);
-				//System.out.println(" Pressed I to hide inventory!");
+				// System.out.println(" Pressed I to hide inventory!");
 			}
 			break;
 		case KeyEvent.VK_Q:
@@ -98,11 +100,13 @@ public class ButtonHandler extends KeyAdapter {
 			}
 			break;
 		case KeyEvent.VK_ESCAPE:
-			if(Instances.player.getInventoryStatus() || Game.Instances.food_potion_vendor.interactionStatus || Game.isMenustatus()){
+			if (Instances.player.getInventoryStatus() || Game.Instances.food_potion_vendor.interactionStatus
+					|| Game.isMenustatus()) {
 				Instances.player.setInventory(false);
 				Game.Instances.food_potion_vendor.interactionStatus = false;
 				Game.setMenustatus(false);
-			}else Game.setMenustatus(true);
+			} else
+				Game.setMenustatus(true);
 		}
 
 		if (Instances.player.sprite_i == 8) {
@@ -122,9 +126,11 @@ public class ButtonHandler extends KeyAdapter {
 	}
 
 	/**
-	 * Procedure which is called by the parent canvas every time a keyboard input stops happening.
+	 * Procedure which is called by the parent canvas every time a keyboard
+	 * input stops happening.
 	 * 
-	 * @param key - key which was recently pressed
+	 * @param key
+	 *            - key which was recently pressed
 	 */
 	public void keyReleased(KeyEvent key) {
 		switch (key.getKeyCode()) {
@@ -152,7 +158,8 @@ public class ButtonHandler extends KeyAdapter {
 	/**
 	 * Currently unused.
 	 * 
-	 * @param key - key which was recently pressed
+	 * @param key
+	 *            - key which was recently pressed
 	 */
 	public void keyTyped(KeyEvent key) {
 

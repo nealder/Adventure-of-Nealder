@@ -22,6 +22,7 @@ import Control.Instances;
 import Model.MapHandler;
 import Model.MapHandler.Tile;
 import View.Game;
+
 /**
  * 
  * Saves and loads data.
@@ -39,10 +40,11 @@ public class DAO {
 	 * 
 	 * Loads the list of unpassable tiles.
 	 * 
-	 * @param name - name of the file which contains the tiles
+	 * @param name
+	 *            - name of the file which contains the tiles
 	 * @return - a list that contains the unpassable tiles
 	 */
-	public  List<Tile> loadUnpassableTiles(String name) {
+	public List<Tile> loadUnpassableTiles(String name) {
 		List<Tile> loaderTileList = new ArrayList<>();
 
 		String line;
@@ -64,10 +66,11 @@ public class DAO {
 	}
 
 	/**
-	 * Saves the current game, including player position on map and player stats.
+	 * Saves the current game, including player position on map and player
+	 * stats.
 	 */
 	@SuppressWarnings("unchecked")
-	public  void saveGamePlay() {
+	public void saveGamePlay() {
 		JSONObject obj = new JSONObject();
 		FileWriter fileWriter;
 
@@ -93,7 +96,7 @@ public class DAO {
 		} catch (IOException | URISyntaxException e) {
 			logger.error(e.toString());
 		} finally {
-			
+
 		}
 
 	}
@@ -101,7 +104,7 @@ public class DAO {
 	/**
 	 * Currently not used.Loads a saved game.
 	 */
-	public  void loadGamePlay() {
+	public void loadGamePlay() {
 		JSONParser parser = new JSONParser();
 
 		try {
@@ -136,9 +139,11 @@ public class DAO {
 	}
 
 	/**
-	 * Not part of the current game version. Loads the tiles where the player can pass to another map.
+	 * Not part of the current game version. Loads the tiles where the player
+	 * can pass to another map.
 	 * 
-	 * @param name - name of the file which contains the tiles
+	 * @param name
+	 *            - name of the file which contains the tiles
 	 * @return - a list that contains the tiles of passageways
 	 */
 	// nem része a "adventuresofnealder.beta1"-nek

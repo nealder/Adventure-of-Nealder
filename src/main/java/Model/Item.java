@@ -66,19 +66,32 @@ public class Item {
 	/**
 	 * Constructor.
 	 * 
-	 * @param iD - the ID
-	 * @param goldValue - the gold value the item can be traded for
-	 * @param name - name of the item
-	 * @param imgPath - location where the image of the item is lacated at
-	 * @param description - description of the item
-	 * @param strenght - the amout of strength the item gives
-	 * @param stamina - the amout of stamina the item gives
-	 * @param life - the amout of life the item gives
-	 * @param magic - the amout of magic the item gives
-	 * @param damage - the amout of damage the item gives
-	 * @param critical_chance - the amout of critical_chance the item gives
-	 * @param critical_dmg - the amout of critical_dmg the item gives
-	 * @param armor - the amout of armor the item gives
+	 * @param iD
+	 *            - the ID
+	 * @param goldValue
+	 *            - the gold value the item can be traded for
+	 * @param name
+	 *            - name of the item
+	 * @param imgPath
+	 *            - location where the image of the item is lacated at
+	 * @param description
+	 *            - description of the item
+	 * @param strenght
+	 *            - the amout of strength the item gives
+	 * @param stamina
+	 *            - the amout of stamina the item gives
+	 * @param life
+	 *            - the amout of life the item gives
+	 * @param magic
+	 *            - the amout of magic the item gives
+	 * @param damage
+	 *            - the amout of damage the item gives
+	 * @param critical_chance
+	 *            - the amout of critical_chance the item gives
+	 * @param critical_dmg
+	 *            - the amout of critical_dmg the item gives
+	 * @param armor
+	 *            - the amout of armor the item gives
 	 */
 	public Item(int iD, int goldValue, String name, String imgPath, String description, int strenght, int stamina,
 			int life, int magic, int damage, float critical_chance, float critical_dmg, int armor) {
@@ -110,7 +123,8 @@ public class Item {
 	/**
 	 * Sets the ID of the item.
 	 * 
-	 * @param iD - to iD
+	 * @param iD
+	 *            - to iD
 	 */
 	public void setID(int iD) {
 		ID = iD;
@@ -128,7 +142,8 @@ public class Item {
 	/**
 	 * Sets the gold value of the item.
 	 * 
-	 * @param value - to value
+	 * @param value
+	 *            - to value
 	 */
 	public void setValue(int value) {
 		GoldValue = value;
@@ -146,7 +161,8 @@ public class Item {
 	/**
 	 * Sets the name of the item.
 	 * 
-	 * @param name - to name
+	 * @param name
+	 *            - to name
 	 */
 	public void setName(String name) {
 		Name = name;
@@ -164,7 +180,8 @@ public class Item {
 	/**
 	 * Sets the location of the image of the item.
 	 * 
-	 * @param imgPath - to imgPath
+	 * @param imgPath
+	 *            - to imgPath
 	 */
 	public void setImgPath(String imgPath) {
 		ImgPath = imgPath;
