@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 import Model.NPC;
 import View.Game;
+import View.MainApp;
 
 /**
  * The class that handles inputs from keyboard.
@@ -28,7 +29,7 @@ public class ButtonHandler extends KeyAdapter {
 	 *            - key which was recently pressed
 	 */
 	public void keyPressed(KeyEvent key) {
-		TileInteraction.handlePassageWay();
+		Game.Instances.tileinteraction.handlePassageWay();
 
 		switch (key.getKeyCode()) {
 		case KeyEvent.VK_UP:
@@ -39,7 +40,7 @@ public class ButtonHandler extends KeyAdapter {
 			if (Instances.player.getInventoryStatus() || Game.isMenustatus()) {
 				break;
 			}
-			TileInteraction.collisionTestUp();
+			Game.Instances.tileinteraction.collisionTestUp(MainApp.beta);
 			break;
 		case KeyEvent.VK_DOWN:
 			Instances.player.setUp(false);
@@ -49,7 +50,7 @@ public class ButtonHandler extends KeyAdapter {
 			if (Instances.player.getInventoryStatus() || Game.isMenustatus()) {
 				break;
 			}
-			TileInteraction.collisionTestDown();
+			Game.Instances.tileinteraction.collisionTestDown(MainApp.beta);
 			break;
 		case KeyEvent.VK_LEFT:
 			Instances.player.setUp(false);
@@ -59,7 +60,7 @@ public class ButtonHandler extends KeyAdapter {
 			if (Instances.player.getInventoryStatus() || Game.isMenustatus()) {
 				break;
 			}
-			TileInteraction.collisionTestLeft();
+			Game.Instances.tileinteraction.collisionTestLeft(MainApp.beta);
 			break;
 		case KeyEvent.VK_RIGHT:
 			Instances.player.setUp(false);
@@ -69,7 +70,7 @@ public class ButtonHandler extends KeyAdapter {
 			if (Instances.player.getInventoryStatus() || Game.isMenustatus()) {
 				break;
 			}
-			TileInteraction.collisionTestRight();
+			Game.Instances.tileinteraction.collisionTestRight(MainApp.beta);
 			break;
 		case KeyEvent.VK_I:
 			Instances.player.setUp(false);

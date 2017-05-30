@@ -77,10 +77,7 @@ public class MapHandler {
 	}
 
 	/**
-	 * Nested class of MapHandler. Handles tiles.
-	 * 
-	 * @author Nealder
-	 *
+	 *The type of the map base system, which we use to build up an actual map( 32x32 {pixel}).
 	 */
 	public static class Tile {
 		/**
@@ -120,8 +117,9 @@ public class MapHandler {
 	public void unpassableTilesTOunpassableRectangle() {
 		for (Tile imp : this.unpassableTiles) {
 			this.unpassableRectangle.add(new Rectangle((imp.x - 1) * 32, (imp.y - 1) * 32, 32, 32));
-			logger.info(this.getClass() + " initialized its unpassable Rectangles");
+			
 		}
+		logger.info(this.getClass() + " initialized its unpassable Rectangles");
 	}
 
 }

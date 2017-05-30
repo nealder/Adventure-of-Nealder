@@ -16,6 +16,10 @@ import Model.Player;
  */
 public class Instances {
 	/**
+	 * Tile interactions.
+	 */
+	public static TileInteraction tileinteraction = new TileInteraction();
+	/**
 	 * The player we are goint to play with.
 	 */
 	public static Player player = new Player();

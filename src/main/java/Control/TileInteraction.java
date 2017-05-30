@@ -21,6 +21,11 @@ public class TileInteraction {
 	 */
 	private static Logger logger = LoggerFactory.getLogger(MapHandler.class);
 	
+	/**
+	 * Currently alpha (functionally) version of passageway handling. Tests the
+	 * passageways if the player is in them. If so, the corresponding map loads
+	 * in.
+	 */
 	public static void handlePassageWay() {
 		if (Instances.player.collisionTest.getX() >= 570 && Instances.player.collisionTest.getY() >= 155
 				&& Instances.player.collisionTest.getY() <= 190
@@ -75,23 +80,26 @@ public class TileInteraction {
 
 	}
 	
-	/**
-	 * Collision tester of the player and the unpassable rectangles from down.
+
+/**
+ * Collision tester of the player and the unpassable rectangles from down.
 	 * If collision, then counters the movement that caused collision for smooth
 	 * continous "in-place" movement.
-	 */
-	public static void collisionTestUp() {
-		for (Rectangle rec : Game.Instances.currentMap.unpassableRectangle) {
-			if (Instances.player.collisionTest.intersects(rec)
-					|| (Instances.player.collisionTest.getY() == rec.getY() + rec.getHeight()
-							&& Instances.player.collisionTest.getX() <= rec.getX() + rec.getWidth()
-							&& Instances.player.collisionTest.getX() + Instances.player.collisionTest.getWidth() >= rec
+ * 
+ * @param game - the game whose player and tiles are checking if collision happen
+ */
+	public void collisionTestUp(Game game) {
+		for (Rectangle rec : game.Instances.currentMap.unpassableRectangle) {
+			if (game.Instances.player.collisionTest.intersects(rec)
+					|| (game.Instances.player.collisionTest.getY() == rec.getY() + rec.getHeight()
+							&& game.Instances.player.collisionTest.getX() <= rec.getX() + rec.getWidth()
+							&& game.Instances.player.collisionTest.getX() + game.Instances.player.collisionTest.getWidth() >= rec
 									.getX())) {
 				logger.info("up collision happaned");
-				Instances.player.setY((int) Instances.player.getY() + 2);
+				game.Instances.player.setY((int) game.Instances.player.getY() + 2);
 				break;
 			} else
-				Instances.player.setUp(true);
+				game.Instances.player.setUp(true);
 		}
 	}
 
@@ -99,19 +107,21 @@ public class TileInteraction {
 	 * Collision tester of the player and the unpassable rectangles from up. If
 	 * collision, then counters the movement that caused collision for smooth
 	 * continous "in-place" movement.
+	 * 
+	 * @param game - the game whose player and tiles are checking if collision happen
 	 */
-	public static void collisionTestDown() {
-		for (Rectangle rec : Game.Instances.currentMap.unpassableRectangle) {
-			if (Instances.player.collisionTest.intersects(rec)
-					|| (Instances.player.collisionTest.getY() + Instances.player.collisionTest.getHeight() == rec.getY()
-							&& Instances.player.collisionTest.getX() + Instances.player.collisionTest.getWidth() >= rec
+	public void collisionTestDown(Game game) {
+		for (Rectangle rec : game.Instances.currentMap.unpassableRectangle) {
+			if (game.Instances.player.collisionTest.intersects(rec)
+					|| (game.Instances.player.collisionTest.getY() + game.Instances.player.collisionTest.getHeight() == rec.getY()
+							&& game.Instances.player.collisionTest.getX() + game.Instances.player.collisionTest.getWidth() >= rec
 									.getX()
-							&& Instances.player.collisionTest.getX() <= rec.getX() + rec.getWidth())) {
+							&& game.Instances.player.collisionTest.getX() <= rec.getX() + rec.getWidth())) {
 				logger.info("down collision happaned");
-				Instances.player.setY((int) Instances.player.getY() - 2);
+				game.Instances.player.setY((int) game.Instances.player.getY() - 2);
 				break;
 			} else
-				Instances.player.setDown(true);
+				game.Instances.player.setDown(true);
 		}
 
 	}
@@ -120,19 +130,21 @@ public class TileInteraction {
 	 * Collision tester of the player and the unpassable rectangles from right.
 	 * If collision, then counters the movement that caused collision for smooth
 	 * continous "in-place" movement.
+	 * 
+	 * @param game - the game whose player and tiles are checking if collision happen
 	 */
-	public static void collisionTestLeft() {
-		for (Rectangle rec : Game.Instances.currentMap.unpassableRectangle) {
-			if (Instances.player.collisionTest.intersects(rec)
-					|| (Instances.player.collisionTest.getX() == rec.getX() + rec.getWidth()
-							&& Instances.player.collisionTest.getY() <= rec.getY() + rec.getHeight()
-							&& Instances.player.collisionTest.getY() + Instances.player.collisionTest.getHeight() >= rec
+	public void collisionTestLeft(Game game) {
+		for (Rectangle rec : game.Instances.currentMap.unpassableRectangle) {
+			if (game.Instances.player.collisionTest.intersects(rec)
+					|| (game.Instances.player.collisionTest.getX() == rec.getX() + rec.getWidth()
+							&& game.Instances.player.collisionTest.getY() <= rec.getY() + rec.getHeight()
+							&& game.Instances.player.collisionTest.getY() + game.Instances.player.collisionTest.getHeight() >= rec
 									.getY())) {
 				logger.info("left collision happaned");
-				Instances.player.setX((int) Instances.player.getX() + 2);
+				game.Instances.player.setX((int) game.Instances.player.getX() + 2);
 				break;
 			} else
-				Instances.player.setLeft(true);
+				game.Instances.player.setLeft(true);
 		}
 
 	}
@@ -141,19 +153,23 @@ public class TileInteraction {
 	 * Collision tester of the player and the unpassable rectangles from left.
 	 * If collision, then counters the movement that caused collision for smooth
 	 * continous "in-place" movement.
+	 * 
+	 * @param game - the game whose player and tiles are checking if collision happen
 	 */
-	public static void collisionTestRight() {
-		for (Rectangle rec : Game.Instances.currentMap.unpassableRectangle) {
-			if (Instances.player.collisionTest.intersects(rec)
-					|| (Instances.player.collisionTest.getX() + Instances.player.collisionTest.width == rec.getX()
-							&& Instances.player.collisionTest.getY() + Instances.player.collisionTest.getHeight() >= rec
+	public void collisionTestRight(Game game) {
+		
+		for (Rectangle rec : game.Instances.currentMap.unpassableRectangle) {
+			
+			if (game.Instances.player.collisionTest.intersects(rec)
+					|| (game.Instances.player.collisionTest.getX() + game.Instances.player.collisionTest.width == rec.getX()
+							&& game.Instances.player.collisionTest.getY() + game.Instances.player.collisionTest.getHeight() >= rec
 									.getY()
-							&& Instances.player.collisionTest.getY() <= rec.getY() + rec.getHeight())) {
+							&& game.Instances.player.collisionTest.getY() <= rec.getY() + rec.getHeight())){
 				logger.info("right collision happaned");
-				Instances.player.setX((int) Instances.player.getX() - 2);
+				game.Instances.player.setX((int) game.Instances.player.getX() - 2);
 				break;
 			} else
-				Instances.player.setRight(true);
+				game.Instances.player.setRight(true);
 		}
 
 	}

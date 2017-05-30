@@ -137,6 +137,7 @@ public class Player {
 		this.critical_chance = critical_chance;
 		this.critical_dmg = critical_dmg;
 		this.armor = armor;
+		this.collisionTest = new Rectangle((int) x + 10, (int) y + 30, 30, 30);
 	}
 
 	/**
