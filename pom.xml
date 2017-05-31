@@ -126,7 +126,7 @@
 						<configuration>
 							<archive>
 								<manifest>
-									<mainClass>com.nealder.View.MainApp</mainClass>
+									<mainClass>View.MainApp</mainClass>
 								</manifest>
 							</archive>
 							<descriptorRefs>
