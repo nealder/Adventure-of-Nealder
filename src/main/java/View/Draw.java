@@ -315,6 +315,7 @@ public class Draw {
 	 */
 	protected void render(Graphics2D g) {
 		try {
+			logger.info(Game.Instances.currentMap.toString());
 			g.drawImage(ImageIO.read(Game.Instances.currentMap.mapImageGround), 0, 0, null);
 		} catch (IOException e) {
 			logger.error(e.toString());

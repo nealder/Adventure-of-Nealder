@@ -126,7 +126,7 @@
 							<mainClass>View.MainApp</mainClass>
 						</manifest>
 						<manifestEntries>
-							<Class-Path>.</Class-Path> 
+							<Class-Path>.</Class-Path>
 						</manifestEntries>
 					</archive>
 				</configuration>

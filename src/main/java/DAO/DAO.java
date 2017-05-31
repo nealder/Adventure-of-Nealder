@@ -49,7 +49,7 @@ public class DAO {
 
 		String line;
 		try {
-			Scanner s = new Scanner(this.getClass().getResourceAsStream("/Maps/" + name)); // this.getClass().getResourceAsStream
+			Scanner s = new Scanner(this.getClass().getResourceAsStream("/Maps/" + name));
 			while (s.hasNext()) {
 				line = (s.next());
 				String[] linearray;
@@ -112,6 +112,7 @@ public class DAO {
 			Reader reader = new InputStreamReader(input);
 			Object obj = parser.parse(reader);
 			JSONObject jsonObject = (JSONObject) obj;
+			
 
 			Instances.player.setName((String) jsonObject.get("name"));
 			Instances.player.setX((int) (long) (double) jsonObject.get("x"));

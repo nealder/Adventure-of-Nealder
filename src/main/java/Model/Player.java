@@ -174,20 +174,20 @@ public class Player {
 	 */
 	public void update() {
 		if (left) {
-			x -= 5;
-			collisionTest.x -= 5;
+			x -= 1;
+			collisionTest.x -= 1;
 		}
 		if (right) {
-			x += 5;
-			collisionTest.x += 5;
+			x += 1;
+			collisionTest.x += 1;
 		}
 		if (up) {
-			y -= 5;
-			collisionTest.y -= 5;
+			y -= 1;
+			collisionTest.y -= 1;
 		}
 		if (down) {
-			y += 5;
-			collisionTest.y += 5;
+			y += 1;
+			collisionTest.y += 1;
 		}
 	}
 
